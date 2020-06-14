@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "expense-tracker"
+version = "0.1.0"
+description = ""
+authors = ["Justin Dray <justin@dray.be>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pygsheets = "^2.0.3"
+xlrd = "^1.2.0"
+selenium = "^3.141.0"
+click = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+expense-tracker = "expense_tracker:main"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
