@@ -12,6 +12,7 @@ selenium = "^3.141.0"
 click = "^7.1.2"
 
 [tool.poetry.dev-dependencies]
+autopep8 = "^1.5.3"
 
 [tool.poetry.scripts]
 expense-tracker = "expense_tracker:main"
