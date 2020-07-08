@@ -14,6 +14,7 @@ class Amex(object):
         self.file_path = "/tmp/Summary.xls"
 
     def process_data(self):
+        print("Processing data for Amex")
         starting_row = 12
         wb = xlrd.open_workbook(self.file_path)
         sheet = wb.sheet_by_index(0)
@@ -29,6 +30,7 @@ class Amex(object):
                 break
 
     def download(self):
+        print("Starting Amex download process")
         driver = downloader.get_selenium_driver("application/vnd.ms-excel")
         self._login(driver)
 
@@ -79,6 +81,7 @@ class Amex(object):
                 return self.file_path
             time.sleep(1)
         raise FileNotFoundError(f"Cannot find {self.file_path}; Download probably failed")
+        print("Successfully retrieved data from Amex")
 
     def _login(self, driver):
         username, password = downloader.get_password("amex")

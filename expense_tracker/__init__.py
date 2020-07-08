@@ -25,10 +25,14 @@ def main(no_download):
         account.process_data()
         data += account.data
 
+    print("Filtering data")
     data = filter_data(data)
 
+    print("Connecting to Google sheets")
     sheet = get_sheet_client()
+    print("Cloning template worksheet")
     worksheet = clone_template_to(sheet, get_worksheet_date())
+    print("Inserting data to worksheet")
     worksheet.insert_rows(row=1, values=data)
 
 
@@ -49,7 +53,9 @@ def autodetect(row):
     description = row[1]
     category = "Unknown"
 
-    if match("GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS|SUMBAL PTY LTD", description):
+    if match(
+        "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS|SUMBAL PTY LTD",
+            description):
         # SUMBAL is Brumby's in Nundah
         category = "Groceries"
     elif match("UBER|UNIQLO|MIMCO|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES", description):

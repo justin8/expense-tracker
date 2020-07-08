@@ -17,6 +17,7 @@ class Bankwest(object):
         self.file_path = "/tmp/bankwest.csv"
 
     def download(self):
+        print("Starting bankwest download process")
         file_glob_pattern = "/tmp/Transactions_*"
         driver = downloader.get_selenium_driver("text/csv")
         self._login(driver)
@@ -47,7 +48,7 @@ class Bankwest(object):
 
         downloaded_file = glob.glob(file_glob_pattern)[0]
         os.rename(downloaded_file, self.file_path)
-        return self.file_path
+        print("Successfully retrieved data from Bankwest")
 
     def _login(self, driver):
         username, password = downloader.get_password("bankwest")
@@ -70,6 +71,7 @@ class Bankwest(object):
         return [start_date_stamp, end_date_stamp]
 
     def process_data(self):
+        print("Processing data for Bankwest")
         self.data = []
         with open(self.file_path) as f:
             file = csv.reader(f)
