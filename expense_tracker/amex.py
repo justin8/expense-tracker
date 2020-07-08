@@ -82,12 +82,12 @@ class Amex(object):
 
     def _login(self, driver):
         username, password = downloader.get_password("amex")
-        driver.get("https://www.americanexpress.com/au/")
+        driver.get("https://global.americanexpress.com/dashboard?inav=au_menu_myacct_acctsum")
         time.sleep(2)
 
-        login_input = driver.find_element_by_id("login-user")
+        login_input = driver.find_element_by_id("eliloUserID")
         login_input.send_keys(username)
-        password_input = driver.find_element_by_id("login-password")
+        password_input = driver.find_element_by_id("eliloPassword")
         password_input.send_keys(password)
         password_input.send_keys(Keys.RETURN)
         time.sleep(10)
