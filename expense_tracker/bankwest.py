@@ -20,9 +20,14 @@ class Bankwest(object):
         file_glob_pattern = "/tmp/Transactions_*"
         driver = downloader.get_selenium_driver("text/csv")
         self._login(driver)
-        os.remove(self.file_path)
-        for file in glob.glob(file_glob_pattern):
-            os.remove(file)
+
+        try:
+            os.remove(self.file_path)
+            for file in glob.glob(file_glob_pattern):
+                os.remove(file)
+        except FileNotFoundError:
+            pass
+
         driver.find_element_by_xpath("//*[contains(text(), 'Transaction search')]").click()
         select = Select(driver.find_element_by_id("_ctl0_ContentMain_ddlRangeOptions"))
         select.select_by_visible_text("Custom date range...")
