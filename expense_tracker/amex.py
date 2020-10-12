@@ -51,10 +51,11 @@ class Amex(object):
         month, year = driver.find_element_by_class_name("months").text.split(" ")
         last_date = downloader.get_last_date(month, year)
         items = driver.find_elements_by_xpath(f"//*[contains(text(), '{last_date}')]")
-        for item in items:
-            if item.text == str(last_date) and item.size["height"] == 14.5:
-                item.click()
-                break
+        
+         # Get a list of buttons that are the right size for the calendar
+         # There might be 2 items; one for the previous month and one for the current. Therefore we always click the last one
+        calendar_buttons = [x for x in items if x.size["height"] == 14.5]
+        calendar_buttons[-1].click()
 
         driver.find_element_by_class_name("action_button").click()
 

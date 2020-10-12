@@ -13,6 +13,7 @@ click = "^7.1.2"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.3"
+flake8 = "^3.8.4"
 
 [tool.poetry.scripts]
 expense-tracker = "expense_tracker:main"
