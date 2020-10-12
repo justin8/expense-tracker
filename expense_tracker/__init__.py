@@ -81,7 +81,7 @@ def autodetect(row):
     elif match("LINKT BRISBANE", description):
         category = "Toll Roads"
     elif match("IKEA|PILLOW TALK", description):
-        category = "Home Improvements"
+        category = "House Improvements"
 
     return [category] + row
 
