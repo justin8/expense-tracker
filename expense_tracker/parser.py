@@ -37,6 +37,8 @@ def autodetect(row):
 
     return [category] + row
 
+def cardholder(row):
+    return row[2]
 
 def match(pattern, string):
     return re.findall(pattern, string, re.IGNORECASE)
