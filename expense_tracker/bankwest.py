@@ -3,7 +3,6 @@ import time
 import datetime
 
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.support.ui import Select
 
 from . import downloader

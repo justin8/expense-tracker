@@ -5,7 +5,6 @@ from os.path import join
 import calendar
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import ElementClickInterceptedException
 
 # Usernames/passwords:
@@ -34,7 +33,7 @@ def get_last_date(month, year):
 
 def get_selenium_driver(file_type):
     profile = webdriver.FirefoxProfile()
-    profile.set_preference('browser.download.folderList', 2) # custom location
+    profile.set_preference('browser.download.folderList', 2)  # custom location
     profile.set_preference('browser.download.manager.showWhenStarting', False)
     profile.set_preference('browser.download.dir', '/tmp')
     profile.set_preference('browser.helperApps.neverAsk.saveToDisk', file_type)
