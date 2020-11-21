@@ -34,11 +34,26 @@ def autodetect(row):
         category = "Toll Roads"
     elif match("IKEA|PILLOW TALK", description):
         category = "House Improvements"
+    elif match("apple.com", description):
+        value = transaction_value(row)
+        if value == 10.99:  # Crunchyroll
+            category = "Untracked"
+        if value == 8.99:  # Disney+
+            category = "Untracked"
 
     return [category] + row
 
+
 def cardholder(row):
-    return row[2]
+    cardholder_full_name = row[2]
+    first_name = cardholder_full_name.split(" ")[0]
+    output_name = first_name.capitalize()
+    return output_name
+
+
+def transaction_value(row):
+    return float(row[3])
+
 
 def match(pattern, string):
     return re.findall(pattern, string, re.IGNORECASE)
