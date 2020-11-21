@@ -6,7 +6,7 @@ def autodetect(row):
     category = "Unknown"
 
     if match(
-        "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS|SUMBAL PTY LTD",
+        "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS|SUMBAL PTY LTD|FRUITS OF EDEN",
             description):
         # SUMBAL is Brumby's in Nundah
         category = "Groceries"
