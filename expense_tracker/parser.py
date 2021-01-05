@@ -52,7 +52,7 @@ def cardholder(row):
 
 
 def transaction_value(row):
-    return float(row[3])
+    return float(row[3].strip("$"))
 
 
 def match(pattern, string):

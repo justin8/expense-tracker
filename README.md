@@ -8,7 +8,7 @@ This script logs in to Bankwest and Amex and pulls down last month's transaction
 
 2. Copy `site_passwords.json.example` to `site_passwords.json` and fill in the usernames & passwords
 
-3. Run the script with `poetry run expense_tracker`
+3. Run the script with `poetry run expense-tracker`
 
 ## Notes
 

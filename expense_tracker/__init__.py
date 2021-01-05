@@ -30,7 +30,6 @@ def main(no_download):
 
     print("Connecting to Google sheets")
     sheet = get_sheet_client()
-    print("Cloning template worksheet")
     worksheet = clone_template_to(sheet, get_worksheet_date())
     print("Inserting data to worksheet")
     worksheet.insert_rows(row=1, values=data)
@@ -40,7 +39,8 @@ def get_worksheet_date():
     today = datetime.date.today()
     first = today.replace(day=1)
     last_month = first - datetime.timedelta(days=1)
-    return last_month.strftime("%Y-%m")
+    response = last_month.strftime("%Y-%m")
+    return response
 
 
 def filter_data(data):
@@ -58,13 +58,19 @@ def cardholder(row):
 
 
 def clone_template_to(sheet, new_name):
+    print(f"Cloning to new worksheet {new_name}...")
     try:
         worksheet = sheet.worksheet_by_title(new_name)
+        print("Attempting to delete existing worksheet...")
         sheet.del_worksheet(worksheet)
+        print("Successfully deleted existing worksheet.")
     except WorksheetNotFound:
+        print("No existing worksheet found.")
         pass
 
-    return sheet.add_worksheet(new_name, src_worksheet=sheet.worksheet_by_title(TEMPLATE_NAME))
+    worksheet = sheet.add_worksheet(new_name, src_worksheet=sheet.worksheet_by_title(TEMPLATE_NAME))
+    worksheet.hidden = False
+    return worksheet
 
 
 def get_sheet_client():
