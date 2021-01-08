@@ -28,15 +28,26 @@ class Bankwest(object):
         except FileNotFoundError:
             pass
 
+        print("Opening Transaction Search...")
         driver.find_element_by_xpath("//*[contains(text(), 'Transaction search')]").click()
         select = Select(driver.find_element_by_id("_ctl0_ContentMain_ddlRangeOptions"))
+
+        print("Searching via custom date range...")
         select.select_by_visible_text("Custom date range...")
         start_date, end_date = self._get_dates()
+
+        print(f"Entering start date of {start_date}...")
         driver.find_element_by_id("_ctl0_ContentMain_dpFromDate_txtDate").send_keys(start_date)
+
+        print(f"Entering end date of {end_date}...")
         driver.find_element_by_id("_ctl0_ContentMain_dpToDate_txtDate").send_keys(end_date)
         driver.execute_script("window.scrollBy(0,2000)")
+
+        print("Searching...")
         driver.find_element_by_id("_ctl0_ContentButtonsRight_btnSearch").click()
         driver.execute_script("window.scrollBy(0,2000)")
+
+        print("Exporting...")
         driver.find_element_by_id("_ctl0_ContentButtonsRight_btnExport").click()
 
         for i in range(30):
@@ -51,13 +62,16 @@ class Bankwest(object):
 
     def _login(self, driver):
         username, password = downloader.get_password("bankwest")
+        print("Loading Bankwest website...")
         driver.get("https://www.bankwest.com.au/personal/login")
         time.sleep(2)
 
+        print("Entering username and password...")
         user_input = driver.find_element_by_id("AuthUC_txtUserID")
         user_input.send_keys(username)
         password_input = driver.find_element_by_id("AuthUC_txtData")
         password_input.send_keys(password)
+        print("Logging in and waiting...")
         password_input.send_keys(Keys.RETURN)
 
     def _get_dates(self):

@@ -34,20 +34,23 @@ class Amex(object):
         driver = downloader.get_selenium_driver("application/vnd.ms-excel")
         self._login(driver)
 
+        print("Scrolling down to find \"Recent Transactions\"")
         driver.find_element_by_css_selector("body").send_keys(Keys.PAGE_DOWN)
         driver.find_element_by_link_text("Recent Transactions").click()
+
+        print("Finding and selecting previous month in calendar...")
         driver.find_element_by_class_name("menu-container").click()
         driver.find_element_by_xpath('//*[@title="Select starting and ending dates"]').click()
         driver.find_element_by_xpath('//*[@title="Previous Month"]').click()
 
-        # Click first day of the month
+        print("Clicking the first day of the month...")
         items = driver.find_elements_by_xpath("//*[contains(text(), '01')]")
         for item in items:
             if item.text == "01" and item.size["height"] == 14.5:
                 item.click()
                 break
 
-        # Click last day of the month
+        print("Clicking the last day of the month...")
         month, year = driver.find_element_by_class_name("months").text.split(" ")
         last_date = downloader.get_last_date(month, year)
         items = driver.find_elements_by_xpath(f"//*[contains(text(), '{last_date}')]")
@@ -66,6 +69,7 @@ class Amex(object):
         except FileNotFoundError:
             pass
 
+        print("Attempting to download in Excel format...")
         time.sleep(3)
         for i in range(20):
             try:
@@ -87,12 +91,15 @@ class Amex(object):
 
     def _login(self, driver):
         username, password = downloader.get_password("amex")
+        print("Loading Amex website...")
         driver.get("https://global.americanexpress.com/dashboard?inav=au_menu_myacct_acctsum")
         time.sleep(2)
 
+        print("Entering username and password...")
         login_input = driver.find_element_by_id("eliloUserID")
         login_input.send_keys(username)
         password_input = driver.find_element_by_id("eliloPassword")
         password_input.send_keys(password)
         password_input.send_keys(Keys.RETURN)
+        print("Logging in and waiting...")
         time.sleep(10)
