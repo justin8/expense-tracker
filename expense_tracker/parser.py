@@ -14,7 +14,7 @@ def autodetect(row):
         category = cardholder(row)
     elif match("TRANSLINK|NUNDAH STATION", description):
         category = "Public Transport"
-    elif match("PLUME HOLISTIC SKIN|HAIRZOOM|HMB BARBER|TWO BROTHERS TOOMBUL|PURELY CURLS", description):
+    elif match("PLUME HOLISTIC SKIN|HAIRZOOM|HMB BARBER|TWO BROTHERS TOOMBUL|PURELY CURLS|BLACKWOOD BARBERS", description):
         category = "Hair"
     elif match("CALTEX|^BP\\b|^PUMA\\b|7-ELEVEN", description):
         category = "Fuel"
