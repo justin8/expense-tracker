@@ -2,20 +2,16 @@ import re
 
 
 def autodetect(row):
-    description = row[1]
+    description = company_detection(row[1])
+    row[1] = description
     category = "Unknown"
-
-    # Add description to Sushi Edo's cryptic name
-    if match("JANG & JANG", description):
-        row[1] = row[1] + " (Sushi Edo)"
 
     if match(
         "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS"
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
-        + "|SUMBAL PTY LTD|FRUITS OF EDEN|HARRIS FARM MARKETS",
+        + "|FRUITS OF EDEN|HARRIS FARM MARKETS",
         description,
     ):
-        # SUMBAL is Brumby's in Nundah
         category = "Groceries"
     elif match(
         "UBER|UNIQLO|MIMCO|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES|JANG & JANG", description
@@ -57,6 +53,8 @@ def autodetect(row):
         category = "Toll Roads"
     elif match("IKEA|PILLOW TALK", description):
         category = "House Improvements"
+    elif match("LIQUORLAND|BWS|1ST CHOICE LIQUOR", description):
+        category = "Alcohol"
     elif match("apple.com", description):
         value = transaction_value(row)
         if value == 10.99:  # Crunchyroll
@@ -72,6 +70,24 @@ def cardholder(row):
     first_name = cardholder_full_name.split(" ")[0]
     output_name = first_name.capitalize()
     return output_name
+
+
+def company_detection(description):
+
+    # Add description to Sushi Edo's cryptic name
+    if match("JANG & JANG", description):
+        description += " (Sushi Edo)"
+    elif match("VANINA HOLDINGS", description):
+        description += " (Bakers Delight Toombul)"
+    elif match("SUMBAL"):
+        description += " (Brumby's Nundah)"
+    elif match("JAI SAKHI BABA"):
+        description += " (Noodle Box Nundah)"
+
+    # Unknown so far:
+    # PARKJUN
+
+    return description
 
 
 def transaction_value(row):
