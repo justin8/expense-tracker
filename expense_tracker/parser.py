@@ -38,7 +38,7 @@ def autodetect(row):
         value = transaction_value(row)
         if value == 10.99:  # Crunchyroll
             category = "Untracked"
-        if value == 8.99:  # Disney+
+        if value == 7.99:  # Disney+
             category = "Untracked"
 
     return [category] + row
