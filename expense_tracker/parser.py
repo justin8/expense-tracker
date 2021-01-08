@@ -5,6 +5,10 @@ def autodetect(row):
     description = row[1]
     category = "Unknown"
 
+    # Add description to Sushi Edo's cryptic name
+    if match("JANG & JANG", description):
+        row[1] = row[1] + " (Sushi Edo)"
+
     if match(
         "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS"
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
@@ -13,7 +17,9 @@ def autodetect(row):
     ):
         # SUMBAL is Brumby's in Nundah
         category = "Groceries"
-    elif match("UBER|UNIQLO|MIMCO|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES", description):
+    elif match(
+        "UBER|UNIQLO|MIMCO|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES|JANG & JANG", description
+    ):
         category = cardholder(row)
     elif match("TRANSLINK|NUNDAH STATION", description):
         category = "Public Transport"
