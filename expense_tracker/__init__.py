@@ -12,7 +12,11 @@ TEMPLATE_NAME = "Template"
 
 
 @click.command()
-@click.option("--no-download", is_flag=True, help="Use cached file from previous run instead of re-downloading")
+@click.option(
+    "--no-download",
+    is_flag=True,
+    help="Use cached file from previous run instead of re-downloading",
+)
 def main(no_download):
     accounts = [Amex(), Bankwest()]
 
@@ -33,6 +37,7 @@ def main(no_download):
     worksheet = clone_template_to(sheet, get_worksheet_date())
     print("Inserting data to worksheet")
     worksheet.insert_rows(row=1, values=data)
+    print("Complete!")
 
 
 def get_worksheet_date():
@@ -58,17 +63,19 @@ def cardholder(row):
 
 
 def clone_template_to(sheet, new_name):
-    print(f"Cloning to new worksheet {new_name}...")
     try:
         worksheet = sheet.worksheet_by_title(new_name)
         print("Attempting to delete existing worksheet...")
         sheet.del_worksheet(worksheet)
         print("Successfully deleted existing worksheet.")
     except WorksheetNotFound:
-        print("No existing worksheet found.")
+        print("No existing worksheet found. Continuing without deletion.")
         pass
 
-    worksheet = sheet.add_worksheet(new_name, src_worksheet=sheet.worksheet_by_title(TEMPLATE_NAME))
+    print(f"Cloning to new worksheet {new_name}...")
+    worksheet = sheet.add_worksheet(
+        new_name, src_worksheet=sheet.worksheet_by_title(TEMPLATE_NAME)
+    )
     worksheet.hidden = False
     return worksheet
 
@@ -78,5 +85,5 @@ def get_sheet_client():
     return gc.open(SPREADSHEET_NAME)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

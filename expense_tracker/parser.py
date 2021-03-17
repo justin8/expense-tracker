@@ -79,9 +79,9 @@ def company_detection(description):
         description += " (Sushi Edo)"
     elif match("VANINA HOLDINGS", description):
         description += " (Bakers Delight Toombul)"
-    elif match("SUMBAL"):
+    elif match("SUMBAL", description):
         description += " (Brumby's Nundah)"
-    elif match("JAI SAKHI BABA"):
+    elif match("JAI SAKHI BABA", description):
         description += " (Noodle Box Nundah)"
 
     # Unknown so far:

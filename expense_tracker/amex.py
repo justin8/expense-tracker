@@ -9,7 +9,6 @@ from . import downloader
 
 
 class Amex(object):
-
     def __init__(self):
         self.file_path = "/tmp/Summary.xls"
 
@@ -23,7 +22,9 @@ class Amex(object):
         current_row = starting_row
         while True:
             try:
-                row = [x.value for x in sheet.row(current_row)]  # Convert from xlrd data types
+                row = [
+                    x.value for x in sheet.row(current_row)
+                ]  # Convert from xlrd data types
                 self.data.append(row[1:5])  # Only keep the relevant columns
                 current_row += 1
             except IndexError:
@@ -34,13 +35,20 @@ class Amex(object):
         driver = downloader.get_selenium_driver("application/vnd.ms-excel")
         self._login(driver)
 
-        print("Scrolling down to find \"Recent Transactions\"")
+        print('Scrolling down to find "Recent Transactions"')
         driver.find_element_by_css_selector("body").send_keys(Keys.PAGE_DOWN)
+        print(
+            "Waiting 20 seconds. Please close any pop ups that Amex has added this month"
+        )
+        time.sleep(20)
+        print("Done waiting")
         driver.find_element_by_link_text("Recent Transactions").click()
 
         print("Finding and selecting previous month in calendar...")
         driver.find_element_by_class_name("menu-container").click()
-        driver.find_element_by_xpath('//*[@title="Select starting and ending dates"]').click()
+        driver.find_element_by_xpath(
+            '//*[@title="Select starting and ending dates"]'
+        ).click()
         driver.find_element_by_xpath('//*[@title="Previous Month"]').click()
 
         print("Clicking the first day of the month...")
@@ -86,13 +94,17 @@ class Amex(object):
                 driver.close()
                 return self.file_path
             time.sleep(1)
-        raise FileNotFoundError(f"Cannot find {self.file_path}; Download probably failed")
+        raise FileNotFoundError(
+            f"Cannot find {self.file_path}; Download probably failed"
+        )
         print("Successfully retrieved data from Amex")
 
     def _login(self, driver):
         username, password = downloader.get_password("amex")
         print("Loading Amex website...")
-        driver.get("https://global.americanexpress.com/dashboard?inav=au_menu_myacct_acctsum")
+        driver.get(
+            "https://global.americanexpress.com/dashboard?inav=au_menu_myacct_acctsum"
+        )
         time.sleep(2)
 
         print("Entering username and password...")
