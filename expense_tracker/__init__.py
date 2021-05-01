@@ -13,16 +13,22 @@ TEMPLATE_NAME = "Template"
 
 @click.command()
 @click.option(
-    "--no-download",
+    "--no-download-amex",
     is_flag=True,
     help="Use cached file from previous run instead of re-downloading",
 )
-def main(no_download):
+@click.option(
+    "--no-download-bankwest",
+    is_flag=True,
+    help="Use cached file from previous run instead of re-downloading",
+)
+def main(no_download_amex, no_download_bankwest):
     accounts = [Amex(), Bankwest()]
 
-    if not no_download:
-        for account in accounts:
-            account.download()
+    if not no_download_amex:
+        accounts[0].download()
+    if not no_download_bankwest:
+        accounts[1].download()
 
     data = []
     for account in accounts:
