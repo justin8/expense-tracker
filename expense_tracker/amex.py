@@ -38,7 +38,7 @@ class Amex(object):
         print('Scrolling down to find "Recent Transactions"')
         driver.find_element_by_css_selector("body").send_keys(Keys.PAGE_DOWN)
         print(
-            "Waiting 20 seconds. Please close any pop ups that Amex has added this month"
+            "Waiting 20 seconds. Please close any pop ups that Amex has added this month. Maybe keep the cursor over 'Recent Transactions'"
         )
         time.sleep(20)
         print("Done waiting")
@@ -54,7 +54,7 @@ class Amex(object):
         print("Clicking the first day of the month...")
         items = driver.find_elements_by_xpath("//*[contains(text(), '01')]")
         for item in items:
-            if item.text == "01" and item.size["height"] == 14.5:
+            if item.text == "01" and item.size["height"] == 17.5:
                 item.click()
                 break
 
@@ -66,7 +66,12 @@ class Amex(object):
         # Get a list of buttons that are the right size for the calendar
         # There might be 2 items; one for the previous month and one for the current.
         # Therefore we always click the last one
-        calendar_buttons = [x for x in items if x.size["height"] == 14.5]
+        # If Amex resize page elements, this might break :/ uncomment the below to print out the matching elements
+        # print("Debug info...")
+        # for i in items:
+        #     print(f"Dimensions: height: {i.size['height']} width: {i.size['width']}. {i.text}")
+
+        calendar_buttons = [x for x in items if x.size["height"] == 17.5]
         calendar_buttons[-1].click()
 
         driver.find_element_by_class_name("action_button").click()
