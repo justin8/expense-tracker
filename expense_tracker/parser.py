@@ -9,7 +9,7 @@ def autodetect(row):
     if match(
         "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS"
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
-        + "|FRUITS OF EDEN|HARRIS FARM MARKETS",
+        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|MARLEYSPOON",
         description,
     ):
         category = "Groceries"
@@ -17,26 +17,30 @@ def autodetect(row):
         "UBER|UNIQLO|MIMCO|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES|JANG & JANG", description
     ):
         category = cardholder(row)
+    elif match("QUEENSLAND URBAN UTI", description):
+        category = "Water"
     elif match("TRANSLINK|NUNDAH STATION", description):
         category = "Public Transport"
+    elif match("SP 90 Bowen Tce", description):
+        category = "Celeste"
     elif match(
         "PLUME HOLISTIC SKIN|HAIRZOOM|HMB BARBER|TWO BROTHERS TOOMBUL"
         + "|PURELY CURLS|BLACKWOOD BARBERS",
         description,
     ):
         category = "Hair"
-    elif match("CALTEX|^BP\\b|^PUMA\\b|7-ELEVEN", description):
+    elif match("CALTEX|^BP\\b|^PUMA\\b|7-ELEVEN|AMPOL|CHARGEFOX", description):
         category = "Fuel"
     elif match("REPCO|SUPER CHEAP AUTO", description):
         category = "Vehicle Maintenance"
-    elif match("AMSTERDAM|NEDERLAND|CARLSON WAGONLIT", description):
+    elif match("AMSTERDAM|NEDERLAND|CARLSON WAGONLIT|BNE187 S807492", description):
         category = "Work Expense"
     elif match("VETERINARY|PETBARN|Vet", description):
         category = "Pet Expenses"
     elif match(
         "Excella|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|"
         + "MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR"
-        + "|GU HEALTH",
+        + "|GU HEALTH|K C PSYCH",
         description,
     ):
         category = "Health/Medical"
@@ -44,7 +48,7 @@ def autodetect(row):
         category = "Fitness"
     elif match(
         "ALDIMOBILE|AMAGICOM|OPTUS|FAMOUS INS|000614696 CLEANING"
-        + "|CRUNCHYROLL|TPG Internet|NETFLIX.COM|AMAZON WEB SERVICES"
+        + "|CRUNCHYROLL|TPG Internet|NETFLIX|AMAZON WEB SERVICES"
         + "|SPOTIFY|BACKBLAZE|AMZNPRIMEAU MEMBERSHIP",
         description,
     ):
@@ -86,6 +90,12 @@ def company_detection(description):
         description += " (Brumby's Nundah)"
     elif match("JAI SAKHI BABA", description):
         description += " (Noodle Box Nundah)"
+    elif match("THE TRUSTEE FOR CHICKE", description):
+        description += " (You Came Again)"
+    elif match("LIVIN LA VIDA LATROBA", description):
+        description += " (King Tea)"
+    elif match("BNE187 S807492", description):
+        description += " (300 George Street parking)"
 
     # Unknown so far:
     # PARKJUN
