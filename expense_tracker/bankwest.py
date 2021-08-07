@@ -4,6 +4,7 @@ import datetime
 
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.action_chains import ActionChains
 
 from . import downloader
 import glob
@@ -11,7 +12,6 @@ import os
 
 
 class Bankwest(object):
-
     def __init__(self):
         self.file_path = "/tmp/bankwest.csv"
 
@@ -29,18 +29,29 @@ class Bankwest(object):
             pass
 
         print("Opening Transaction Search...")
-        driver.find_element_by_xpath("//*[contains(text(), 'Transaction search')]").click()
-        select = Select(driver.find_element_by_id("_ctl0_ContentMain_ddlRangeOptions"))
+        accounts_button = driver.find_element_by_xpath(
+            "//*[contains(text(), 'Accounts')]"
+        )
+        hover = ActionChains(driver).move_to_element(accounts_button)
+        hover.perform()
+        driver.find_element_by_xpath(
+            "//*[contains(text(), 'Transaction search')]"
+        ).click()
 
         print("Searching via custom date range...")
+        select = Select(driver.find_element_by_id("_ctl0_ContentMain_ddlRangeOptions"))
         select.select_by_visible_text("Custom date range...")
         start_date, end_date = self._get_dates()
 
         print(f"Entering start date of {start_date}...")
-        driver.find_element_by_id("_ctl0_ContentMain_dpFromDate_txtDate").send_keys(start_date)
+        driver.find_element_by_id("_ctl0_ContentMain_dpFromDate_txtDate").send_keys(
+            start_date
+        )
 
         print(f"Entering end date of {end_date}...")
-        driver.find_element_by_id("_ctl0_ContentMain_dpToDate_txtDate").send_keys(end_date)
+        driver.find_element_by_id("_ctl0_ContentMain_dpToDate_txtDate").send_keys(
+            end_date
+        )
         driver.execute_script("window.scrollBy(0,2000)")
 
         print("Searching...")
