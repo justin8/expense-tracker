@@ -9,7 +9,7 @@ def autodetect(row):
     if match(
         "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS"
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
-        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|MARLEYSPOON",
+        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|MARLEYSPOON|BULKNUTRIEN",
         description,
     ):
         category = "Groceries"
@@ -65,6 +65,8 @@ def autodetect(row):
             category = "Untracked"
         if value == 8.99:  # Disney+
             category = "Untracked"
+    elif match("ADOBESYSTEM", description):
+        category = "Education"
     elif match("LIFESTYLEREWARDSAUD", description):
         # Amazon gift card purchase through GU Health
         category = "Untracked"
@@ -96,6 +98,8 @@ def company_detection(description):
         description += " (King Tea)"
     elif match("BNE187 S807492", description):
         description += " (300 George Street parking)"
+    elif match("RSQ", description):
+        description += " (Charlie's Raw Squeeze)"
 
     # Unknown so far:
     # PARKJUN
