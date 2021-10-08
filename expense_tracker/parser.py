@@ -33,14 +33,17 @@ def autodetect(row):
         category = "Fuel"
     elif match("REPCO|SUPER CHEAP AUTO", description):
         category = "Vehicle Maintenance"
-    elif match("AMSTERDAM|NEDERLAND|CARLSON WAGONLIT|BNE187 S807492", description):
+    elif match(
+        "AMSTERDAM|NEDERLAND|CARLSON WAGONLIT|BNE187 S807492|O'GABEE COFFEE",
+        description,
+    ):
         category = "Work Expense"
     elif match("VETERINARY|PETBARN|Vet", description):
         category = "Pet Expenses"
     elif match(
         "Excella|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|"
         + "MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR"
-        + "|GU HEALTH|K C PSYCH",
+        + "|GU HEALTH|K C PSYCH|PLINE",
         description,
     ):
         category = "Health/Medical"
@@ -63,7 +66,7 @@ def autodetect(row):
         value = transaction_value(row)
         if value == 10.99:  # Crunchyroll
             category = "Untracked"
-        if value == 8.99:  # Disney+
+        if value == 11.99:  # Disney+
             category = "Untracked"
     elif match("ADOBESYSTEM", description):
         category = "Education"
