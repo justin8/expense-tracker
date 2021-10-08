@@ -21,7 +21,7 @@ def autodetect(row):
         category = "Water"
     elif match("TRANSLINK|NUNDAH STATION", description):
         category = "Public Transport"
-    elif match("SP 90 Bowen Tce", description):
+    elif match("SP 90 Bowen T", description):
         category = "Celeste"
     elif match(
         "PLUME HOLISTIC SKIN|HAIRZOOM|HMB BARBER|TWO BROTHERS TOOMBUL"
@@ -56,6 +56,8 @@ def autodetect(row):
         description,
     ):
         category = "Untracked"
+    elif match("MOJO POWER", description):
+        category = "Power"
     elif match("LINKT BRISBANE", description):
         category = "Toll Roads"
     elif match("IKEA|PILLOW TALK", description):
