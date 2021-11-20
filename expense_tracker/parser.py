@@ -9,7 +9,7 @@ def autodetect(row):
     if match(
         "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS"
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
-        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|MARLEYSPOON|BULKNUTRIEN",
+        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|MARLEYSPOON|BULKNUTRIEN|WW METRO",
         description,
     ):
         category = "Groceries"
@@ -29,12 +29,12 @@ def autodetect(row):
         description,
     ):
         category = "Hair"
-    elif match("CALTEX|^BP\\b|^PUMA\\b|7-ELEVEN|AMPOL|CHARGEFOX", description):
+    elif match("CALTEX|^BP\\b|^PUMA\\b|AMPOL|CHARGEFOX", description):
         category = "Fuel"
     elif match("REPCO|SUPER CHEAP AUTO", description):
         category = "Vehicle Maintenance"
     elif match(
-        "AMSTERDAM|NEDERLAND|CARLSON WAGONLIT|BNE187 S807492|O'GABEE COFFEE",
+        "AMSTERDAM|NEDERLAND|CARLSON WAGONLIT|BNE187 S807|O'GABEE COFFEE",
         description,
     ):
         category = "Work Expense"
@@ -101,7 +101,7 @@ def company_detection(description):
         description += " (You Came Again)"
     elif match("LIVIN LA VIDA LATROBA", description):
         description += " (King Tea)"
-    elif match("BNE187 S807492", description):
+    elif match("BNE187 S807", description):
         description += " (300 George Street parking)"
     elif match("RSQ", description):
         description += " (Charlie's Raw Squeeze)"
