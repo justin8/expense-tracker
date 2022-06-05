@@ -60,14 +60,6 @@ def filter_data(data):
     return data
 
 
-def cardholder(row):
-    raw_cardholder = row[2]
-    if match("justin", raw_cardholder):
-        return "Justin"
-    if match("celeste", raw_cardholder):
-        return "Celeste"
-
-
 def clone_template_to(sheet, new_name):
     try:
         worksheet = sheet.worksheet_by_title(new_name)
@@ -79,9 +71,7 @@ def clone_template_to(sheet, new_name):
         pass
 
     print(f"Cloning to new worksheet {new_name}...")
-    worksheet = sheet.add_worksheet(
-        new_name, src_worksheet=sheet.worksheet_by_title(TEMPLATE_NAME)
-    )
+    worksheet = sheet.add_worksheet(new_name, src_worksheet=sheet.worksheet_by_title(TEMPLATE_NAME))
     worksheet.hidden = False
     return worksheet
 

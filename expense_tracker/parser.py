@@ -2,30 +2,31 @@ import re
 
 
 def autodetect(row):
-    description = company_detection(row[1])
+    description = company_detection(row)
     row[1] = description
     category = "Unknown"
 
     if match(
         "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS"
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
-        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|MARLEYSPOON|BULKNUTRIEN|WW METRO",
+        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO",
         description,
     ):
         category = "Groceries"
-    elif match(
-        "UBER|UNIQLO|MIMCO|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES|JANG & JANG", description
-    ):
+    elif match("MARLEYSPOON", description):
+        category = "Food"
+    elif match("YORK STREET|SUSHI|Grill'd|GONG CHA|CHATIME", description):
+        category = "Eating Out"
+    elif match("UBER|DIDI MOBILI|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES|JANG & JANG", description):
         category = cardholder(row)
     elif match("QUEENSLAND URBAN UTI", description):
         category = "Water"
     elif match("TRANSLINK|NUNDAH STATION", description):
         category = "Public Transport"
-    elif match("SP 90 Bowen T", description):
-        category = "Celeste"
+    elif match("SP 90 Bowen T|Wilson|Secure Parking", description):
+        category = "Parking"
     elif match(
-        "PLUME HOLISTIC SKIN|HAIRZOOM|HMB BARBER|TWO BROTHERS TOOMBUL"
-        + "|PURELY CURLS|BLACKWOOD BARBERS",
+        "PLUME HOLISTIC SKIN|HAIRZOOM|HMB BARBER|TWO BROTHERS TOOMBUL" + "|PURELY CURLS|BLACKWOOD BARBERS",
         description,
     ):
         category = "Hair"
@@ -41,21 +42,12 @@ def autodetect(row):
     elif match("VETERINARY|PETBARN|Vet", description):
         category = "Pet Expenses"
     elif match(
-        "Excella|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|"
-        + "MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR"
-        + "|GU HEALTH|K C PSYCH|PLINE",
+        "Excella|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|" + "MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR" + "|GU HEALTH|K C PSYCH|PLINE",
         description,
     ):
         category = "Health/Medical"
     elif match("Goodlife", description):
         category = "Fitness"
-    elif match(
-        "ALDIMOBILE|AMAGICOM|OPTUS|FAMOUS INS|000614696 CLEANING"
-        + "|CRUNCHYROLL|TPG Internet|NETFLIX|AMAZON WEB SERVICES"
-        + "|SPOTIFY|BACKBLAZE|AMZNPRIMEAU MEMBERSHIP",
-        description,
-    ):
-        category = "Untracked"
     elif match("MOJO POWER", description):
         category = "Power"
     elif match("LINKT BRISBANE", description):
@@ -64,17 +56,20 @@ def autodetect(row):
         category = "House Improvements"
     elif match("LIQUORLAND|BWS|1ST CHOICE LIQUOR", description):
         category = "Alcohol"
-    elif match("apple.com", description):
-        value = transaction_value(row)
-        if value == 10.99:  # Crunchyroll
-            category = "Untracked"
-        if value == 11.99:  # Disney+
-            category = "Untracked"
+    elif match("Crunchyroll|Disney|AMAZON WEB SERVICES|TESLA INC|AUDIBLE|GOOGLE GOOGLE|NETFLIX|SPOTIFY|FORWARDEML", description):
+        category = "Subscriptions"
     elif match("ADOBESYSTEM", description):
         category = "Education"
-    elif match("LIFESTYLEREWARDSAUD", description):
+    elif match("LIFESTYLEREWARDSAUD|TPG|PLUME SKIN|OPTUS BILLING AUTOPAY", description):
         # Amazon gift card purchase through GU Health
+        # Internet
+        # Sugaring
+        # Optus phonebill
         category = "Untracked"
+    elif match("HORSEPOWER PT", description):
+        category = "Gym"
+    elif match("Globird", description):
+        category = "Gas"
 
     return [category] + row
 
@@ -86,7 +81,8 @@ def cardholder(row):
     return output_name
 
 
-def company_detection(description):
+def company_detection(row):
+    description = row[1]
 
     # Add description to Sushi Edo's cryptic name
     if match("JANG & JANG", description):
@@ -105,7 +101,12 @@ def company_detection(description):
         description += " (300 George Street parking)"
     elif match("RSQ", description):
         description += " (Charlie's Raw Squeeze)"
-
+    elif match("apple.com", description):
+        value = transaction_value(row)
+        if value == 10.99:
+            description += " (Crunchyroll)"
+        if value == 11.99:
+            description += " (Disney+)"
     # Unknown so far:
     # PARKJUN
 
