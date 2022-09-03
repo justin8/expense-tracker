@@ -7,7 +7,7 @@ from .bankwest import Bankwest
 from .parser import autodetect
 import datetime
 
-SPREADSHEET_NAME = "Expense Tracking"
+SPREADSHEET_NAME = "Expense Tracking v2"
 TEMPLATE_NAME = "Template"
 
 
