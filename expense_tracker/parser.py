@@ -60,16 +60,20 @@ def autodetect(row):
         category = "Subscriptions"
     elif match("ADOBESYSTEM", description):
         category = "Education"
-    elif match("LIFESTYLEREWARDSAUD|TPG|PLUME SKIN|OPTUS BILLING AUTOPAY", description):
+    elif match("LIFESTYLEREWARDSAUD|TPG|PLUME SKIN|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE", description):
         # Amazon gift card purchase through GU Health
         # Internet
         # Sugaring
-        # Optus phonebill
+        # Optus phone bill
+        # Vodafone phone bill
+        # Moos Mobile phone bill
         category = "Untracked"
     elif match("HORSEPOWER PT", description):
         category = "Gym"
     elif match("Globird", description):
         category = "Gas"
+    elif match("MOONPIGCOM", description):
+        category = "Presents"
 
     return [category] + row
 
