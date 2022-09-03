@@ -29,14 +29,10 @@ class Bankwest(object):
             pass
 
         print("Opening Transaction Search...")
-        accounts_button = driver.find_element_by_xpath(
-            "//*[contains(text(), 'Accounts')]"
-        )
+        accounts_button = driver.find_element_by_xpath("//*[contains(text(), 'Accounts')]")
         hover = ActionChains(driver).move_to_element(accounts_button)
         hover.perform()
-        driver.find_element_by_xpath(
-            "//*[contains(text(), 'Transaction search')]"
-        ).click()
+        driver.find_element_by_xpath("//*[contains(text(), 'Transaction search')]").click()
 
         print("Searching via custom date range...")
         select = Select(driver.find_element_by_id("_ctl0_ContentMain_ddlRangeOptions"))
@@ -44,14 +40,10 @@ class Bankwest(object):
         start_date, end_date = self._get_dates()
 
         print(f"Entering start date of {start_date}...")
-        driver.find_element_by_id("_ctl0_ContentMain_dpFromDate_txtDate").send_keys(
-            start_date
-        )
+        driver.find_element_by_id("_ctl0_ContentMain_dpFromDate_txtDate").send_keys(start_date)
 
         print(f"Entering end date of {end_date}...")
-        driver.find_element_by_id("_ctl0_ContentMain_dpToDate_txtDate").send_keys(
-            end_date
-        )
+        driver.find_element_by_id("_ctl0_ContentMain_dpToDate_txtDate").send_keys(end_date)
         driver.execute_script("window.scrollBy(0,2000)")
 
         print("Searching...")
@@ -86,6 +78,11 @@ class Bankwest(object):
         password_input.send_keys(Keys.RETURN)
 
     def _get_dates(self):
+        """
+        Returns the first and last day of the previous month
+
+        :return e.g. ['01/08/2022', '31/08/2022']
+        """
         today = datetime.date.today()
         first = today.replace(day=1)
         end_date = first - datetime.timedelta(days=1)
