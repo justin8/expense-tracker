@@ -9,7 +9,8 @@ def autodetect(row):
     if match(
         "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS"
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
-        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO",
+        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO|"
+        + "Wolff Coffee Roasters|CLAYFIELD SEAFOOD MARKE|YUENS MARKET|SUNLIT ASIAN SUPERMAR",
         description,
     ):
         category = "Groceries"
@@ -26,7 +27,7 @@ def autodetect(row):
     elif match("SP 90 Bowen T|Wilson|Secure Parking", description):
         category = "Parking"
     elif match(
-        "PLUME HOLISTIC SKIN|HAIRZOOM|HMB BARBER|TWO BROTHERS TOOMBUL" + "|PURELY CURLS|BLACKWOOD BARBERS",
+        "PLUME HOLISTIC SKIN|HAIRZOOM|EpicHair|THE SMARTY BARBERS|HMB BARBER|TWO BROTHERS TOOMBUL|PURELY CURLS|BLACKWOOD BARBERS",
         description,
     ):
         category = "Hair"
@@ -42,14 +43,12 @@ def autodetect(row):
     elif match("VETERINARY|PETBARN|Vet", description):
         category = "Pet Expenses"
     elif match(
-        "Excella|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|" + "MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR" + "|GU HEALTH|K C PSYCH|PLINE",
+        "Excella|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR|GU HEALTH|K C PSYCH|PLINE",
         description,
     ):
         category = "Health/Medical"
     elif match("Goodlife", description):
         category = "Fitness"
-    elif match("MOJO POWER", description):
-        category = "Power"
     elif match("LINKT BRISBANE", description):
         category = "Toll Roads"
     elif match("IKEA|PILLOW TALK", description):
@@ -60,20 +59,23 @@ def autodetect(row):
         category = "Subscriptions"
     elif match("ADOBESYSTEM", description):
         category = "Education"
-    elif match("LIFESTYLEREWARDSAUD|TPG|PLUME SKIN|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE", description):
+    elif match("LIFESTYLEREWARDSAUD|TPG|PLUME SKIN|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|BPAY PAYMENT-THANK YOU", description):
         # Amazon gift card purchase through GU Health
         # Internet
         # Sugaring
         # Optus phone bill
         # Vodafone phone bill
         # Moos Mobile phone bill
+        # Credit card repayment
         category = "Untracked"
     elif match("HORSEPOWER PT", description):
         category = "Gym"
-    elif match("Globird", description):
-        category = "Gas"
+    elif match("AGLSALESPTY", description):
+        category = "Power and Gas"
     elif match("MOONPIGCOM", description):
         category = "Presents"
+    elif match("GREATNAILS PTY LTD", description):
+        category = "Celeste"
 
     return [category] + row
 
