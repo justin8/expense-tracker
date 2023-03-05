@@ -120,7 +120,7 @@ def company_detection(row):
 
 
 def transaction_value(row):
-    return float(row[3].strip("$"))
+    return float(row[3].strip("$").replace(",", ""))
 
 
 def match(pattern, string):
