@@ -57,6 +57,7 @@ def get_worksheet_date():
 def filter_data(data):
     # prefix with empty field for filling in purpose
     data = [autodetect(x) for x in data]
+    data = [x for x in data if x]
     return data
 
 

@@ -33,14 +33,14 @@ def autodetect(row):
         category = "Hair"
     elif match("CALTEX|^BP\\b|^PUMA\\b|AMPOL|CHARGEFOX", description):
         category = "Fuel"
-    elif match("REPCO|SUPER CHEAP AUTO", description):
+    elif match("REPCO|SUPER CHEAP AUTO|TESLA MOTORS AUSTRALIA", description):
         category = "Vehicle Maintenance"
     elif match(
         "AMSTERDAM|NEDERLAND|CARLSON WAGONLIT|BNE187 S807|O'GABEE COFFEE",
         description,
     ):
         category = "Work Expense"
-    elif match("VETERINARY|PETBARN|Vet", description):
+    elif match("VETERINARY|PETBARN|Vet|FOUR PAW", description):
         category = "Pet Expenses"
     elif match(
         "Excella|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR|GU HEALTH|K C PSYCH|PLINE",
@@ -59,14 +59,13 @@ def autodetect(row):
         category = "Subscriptions"
     elif match("ADOBESYSTEM", description):
         category = "Education"
-    elif match("LIFESTYLEREWARDSAUD|TPG|PLUME SKIN|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|BPAY PAYMENT-THANK YOU", description):
+    elif match("LIFESTYLEREWARDSAUD|TPG|PLUME SKIN|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE", description):
         # Amazon gift card purchase through GU Health
         # Internet
         # Sugaring
         # Optus phone bill
         # Vodafone phone bill
         # Moos Mobile phone bill
-        # Credit card repayment
         category = "Untracked"
     elif match("HORSEPOWER PT", description):
         category = "Gym"
@@ -76,6 +75,10 @@ def autodetect(row):
         category = "Presents"
     elif match("GREATNAILS PTY LTD", description):
         category = "Celeste"
+    elif match("BPAY PAYMENT-THANK YOU", description):
+        # Delete these rows
+        # Credit card repayment
+        return None
 
     return [category] + row
 
