@@ -9,11 +9,12 @@ python = "^3.8"
 pygsheets = "^2.0.3"
 xlrd = "^1.2.0"
 selenium = "^3.141.0"
-click = "^7.1.2"
+click = "^8.1.3"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 autopep8 = "^1.5.3"
 flake8 = "^3.8.4"
+black = "^23.3.0"
 
 [tool.poetry.scripts]
 expense-tracker = "expense_tracker:main"
