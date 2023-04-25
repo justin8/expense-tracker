@@ -70,9 +70,9 @@ class Bankwest(object):
         time.sleep(2)
 
         print("Entering username and password...")
-        user_input = driver.find_element_by_id("AuthUC_txtUserID")
+        user_input = driver.find_element_by_id("customerPan")
         user_input.send_keys(username)
-        password_input = driver.find_element_by_id("AuthUC_txtData")
+        password_input = driver.find_element_by_id("customerPassword")
         password_input.send_keys(password)
         print("Logging in and waiting...")
         password_input.send_keys(Keys.RETURN)
