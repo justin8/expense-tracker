@@ -10,7 +10,8 @@ def autodetect(row):
         "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS"
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
         + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO|"
-        + "Wolff Coffee Roasters|CLAYFIELD SEAFOOD MARKE|YUENS MARKET|SUNLIT ASIAN SUPERMAR",
+        + "Wolff Coffee Roasters|CLAYFIELD SEAFOOD MARKE|YUENS MARKET|"
+        + "SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU",
         description,
     ):
         category = "Groceries"
