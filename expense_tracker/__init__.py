@@ -1,3 +1,5 @@
+import datetime
+
 import click
 import pygsheets
 from pygsheets import WorksheetNotFound
@@ -5,7 +7,6 @@ from pygsheets import WorksheetNotFound
 from .amex import Amex
 from .bankwest import Bankwest
 from .parser import autodetect
-import datetime
 
 SPREADSHEET_NAME = "Expense Tracking v2"
 TEMPLATE_NAME = "Template"

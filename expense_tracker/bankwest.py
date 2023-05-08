@@ -6,19 +6,19 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
 
-from . import downloader
+from .downloader import Downloader
 import glob
 import os
 
 
-class Bankwest(object):
+class Bankwest(Downloader):
     def __init__(self):
         self.file_path = "/tmp/bankwest.csv"
 
-    def download(self):
+    def _download(self):
         print("Starting bankwest download process")
         file_glob_pattern = "/tmp/Transactions_*"
-        driver = downloader.get_selenium_driver("text/csv")
+        driver = self.get_selenium_driver("text/csv")
         self._login(driver)
 
         try:
@@ -64,7 +64,7 @@ class Bankwest(object):
         print("Successfully retrieved data from Bankwest")
 
     def _login(self, driver):
-        username, password = downloader.get_password("bankwest")
+        username, password = self.get_password("bankwest")
         print("Loading Bankwest website...")
         driver.get("https://www.bankwest.com.au/personal/login")
         time.sleep(2)

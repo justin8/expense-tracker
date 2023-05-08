@@ -5,10 +5,10 @@ import xlrd
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import ElementClickInterceptedException
 
-from . import downloader
+from .downloader import Downloader
 
 
-class Amex(object):
+class Amex(Downloader):
     def __init__(self):
         self.file_path = "/tmp/Summary.xls"
 
@@ -28,9 +28,9 @@ class Amex(object):
             except IndexError:
                 break
 
-    def download(self):
+    def _download(self):
         print("Starting Amex download process")
-        driver = downloader.get_selenium_driver("application/vnd.ms-excel")
+        driver = self.get_selenium_driver("application/vnd.ms-excel")
         self._login(driver)
 
         print('Scrolling down to find "Recent Transactions"')
@@ -54,7 +54,7 @@ class Amex(object):
 
         print("Clicking the last day of the month...")
         month, year = driver.find_element_by_class_name("months").text.split(" ")
-        last_date = downloader.get_last_date(month, year)
+        last_date = self.get_last_date(month, year)
         items = driver.find_elements_by_xpath(f"//*[contains(text(), '{last_date}')]")
 
         # Get a list of buttons that are the right size for the calendar
@@ -97,7 +97,7 @@ class Amex(object):
         print("Successfully retrieved data from Amex")
 
     def _login(self, driver):
-        username, password = downloader.get_password("amex")
+        username, password = self.get_password("amex")
         print("Loading Amex website...")
         driver.get("https://global.americanexpress.com/dashboard?inav=au_menu_myacct_acctsum")
         time.sleep(2)

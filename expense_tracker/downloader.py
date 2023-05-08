@@ -1,6 +1,7 @@
 import json
 import os
 import time
+import traceback
 from os.path import join
 import calendar
 
@@ -12,39 +13,54 @@ from selenium.common.exceptions import ElementClickInterceptedException
 PASSWORDS_FILE = join(os.getcwd(), "site-passwords.json")
 
 
-def click_obscured_link(element):
-    for i in range(20):
-        try:
-            element.click()
+class Downloader(object):
+    def _download(self):
+        raise NotImplementedError("_download needs to be implemented by a subclass")
+
+    def download(self):
+        while True:
+            try:
+                self._download()
+            except Exception as e:
+                traceback.print_exc()
+                response = input("An error has occurred during download. Do you want to try again? (y/n)\n")
+                if response.lower().startswith("y"):
+                    print("Retrying...")
+                    continue
+                print("Aborting")
+                raise e
             break
-        except ElementClickInterceptedException:
-            time.sleep(1)
-    raise ElementClickInterceptedException("Unable to click on element")
 
+    def click_obscured_link(self, element):
+        for i in range(20):
+            try:
+                element.click()
+                break
+            except ElementClickInterceptedException:
+                time.sleep(1)
+        raise ElementClickInterceptedException("Unable to click on element")
 
-def get_last_date(month, year):
-    month = month[:3]
-    year = int(year)
-    month_map = dict((v, k) for k, v in enumerate(calendar.month_abbr))
-    month_number = month_map[month]
-    last_date = calendar.monthrange(year, month_number)[1]
-    return last_date
+    def get_last_date(self, month, year):
+        month = month[:3]
+        year = int(year)
+        month_map = dict((v, k) for k, v in enumerate(calendar.month_abbr))
+        month_number = month_map[month]
+        last_date = calendar.monthrange(year, month_number)[1]
+        return last_date
 
+    def get_selenium_driver(self, file_type):
+        profile = webdriver.FirefoxProfile()
+        profile.set_preference("browser.download.folderList", 2)  # custom location
+        profile.set_preference("browser.download.manager.showWhenStarting", False)
+        profile.set_preference("browser.download.dir", "/tmp")
+        profile.set_preference("browser.helperApps.neverAsk.saveToDisk", file_type)
+        driver = webdriver.Firefox(profile)
+        driver.implicitly_wait(20)
+        return driver
 
-def get_selenium_driver(file_type):
-    profile = webdriver.FirefoxProfile()
-    profile.set_preference('browser.download.folderList', 2)  # custom location
-    profile.set_preference('browser.download.manager.showWhenStarting', False)
-    profile.set_preference('browser.download.dir', '/tmp')
-    profile.set_preference('browser.helperApps.neverAsk.saveToDisk', file_type)
-    driver = webdriver.Firefox(profile)
-    driver.implicitly_wait(20)
-    return driver
-
-
-def get_password(site):
-    with open(PASSWORDS_FILE) as f:
-        data = json.load(f)
-        username = data[site]["username"]
-        password = data[site]["password"]
-    return [username, password]
+    def get_password(self, site):
+        with open(PASSWORDS_FILE) as f:
+            data = json.load(f)
+            username = data[site]["username"]
+            password = data[site]["password"]
+        return [username, password]
