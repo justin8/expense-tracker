@@ -25,8 +25,6 @@ def autodetect(row):
         category = "Water"
     elif match("TRANSLINK|NUNDAH STATION", description):
         category = "Public Transport"
-    elif match("SP 90 Bowen T|Wilson|Secure Parking", description):
-        category = "Parking"
     elif match(
         "PLUME HOLISTIC SKIN|HAIRZOOM|EpicHair|THE SMARTY BARBERS|HMB BARBER|TWO BROTHERS TOOMBUL|PURELY CURLS|BLACKWOOD BARBERS",
         description,
@@ -37,14 +35,14 @@ def autodetect(row):
     elif match("REPCO|SUPER CHEAP AUTO|TESLA MOTORS AUSTRALIA", description):
         category = "Vehicle Maintenance"
     elif match(
-        "AMSTERDAM|NEDERLAND|CARLSON WAGONLIT|BNE187 S807|O'GABEE COFFEE",
+        "CARLSON WAGONLIT|BNE187 S807|O'GABEE COFFEE|Wilson",
         description,
     ):
         category = "Work Expense"
     elif match("VETERINARY|PETBARN|Vet|FOUR PAW", description):
         category = "Pet Expenses"
     elif match(
-        "Excella|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR|GU HEALTH|K C PSYCH|PLINE",
+        "Excella|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR|GU HEALTH|K C PSYCH|PLINE|THE PEACHAN COLLECTIVE",
         description,
     ):
         category = "Health/Medical"
@@ -74,7 +72,7 @@ def autodetect(row):
         category = "Power and Gas"
     elif match("MOONPIGCOM", description):
         category = "Presents"
-    elif match("GREATNAILS PTY LTD", description):
+    elif match("GREATNAILS PTY LTD|RAINBOWNAIL|SP 90 Bowen T", description):
         category = "Celeste"
     elif match("BPAY PAYMENT-THANK YOU", description):
         # Delete these rows
@@ -111,12 +109,14 @@ def company_detection(row):
         description += " (300 George Street parking)"
     elif match("RSQ", description):
         description += " (Charlie's Raw Squeeze)"
-    elif match("apple.com", description):
-        value = transaction_value(row)
-        if value == 10.99:
-            description += " (Crunchyroll)"
-        if value == 11.99:
-            description += " (Disney+)"
+    elif match("THE PEACHAN COLLECTIVE", description):
+        description += " (KCPSYCH)"
+    # elif match("apple.com", description):
+    #     value = transaction_value(row)
+    #     if value == 10.99:
+    #         description += " (Crunchyroll)"
+    #     if value == 11.99:
+    #         description += " (Disney+)"
     # Unknown so far:
     # PARKJUN
 
