@@ -11,14 +11,12 @@ def autodetect(row):
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
         + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO|"
         + "Wolff Coffee Roasters|CLAYFIELD SEAFOOD MARKE|YUENS MARKET|"
-        + "SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU",
+        + "SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU|FRESCO",
         description,
     ):
         category = "Groceries"
     elif match("MARLEYSPOON", description):
         category = "Food"
-    elif match("YORK STREET|SUSHI|Grill'd|GONG CHA|CHATIME", description):
-        category = "Eating Out"
     elif match("UBER|DIDI MOBILI|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES|JANG & JANG", description):
         category = cardholder(row)
     elif match("QUEENSLAND URBAN UTI", description):
@@ -58,13 +56,14 @@ def autodetect(row):
         category = "Subscriptions"
     elif match("ADOBESYSTEM", description):
         category = "Education"
-    elif match("LIFESTYLEREWARDSAUD|TPG|PLUME SKIN|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE", description):
+    elif match("LIFESTYLEREWARDSAUD|TPG|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS", description):
         # Amazon gift card purchase through GU Health
         # Internet
-        # Sugaring
         # Optus phone bill
         # Vodafone phone bill
-        # Moos Mobile phone bill
+        # Moose Mobile phone bill
+        # Insurance
+        # Rego
         category = "Untracked"
     elif match("HORSEPOWER PT", description):
         category = "Gym"
