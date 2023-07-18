@@ -21,14 +21,14 @@ class Downloader(object):
         while True:
             try:
                 self._download()
-            except Exception as e:
+            except Exception as ex:
                 traceback.print_exc()
                 response = input("An error has occurred during download. Do you want to try again? (y/n)\n")
                 if response.lower().startswith("y"):
                     print("Retrying...")
                     continue
                 print("Aborting")
-                raise e
+                raise ex
             break
 
     def click_obscured_link(self, element):
