@@ -12,7 +12,7 @@ class Amex(Downloader):
     def __init__(self):
         self.file_path = "/tmp/Summary.xls"
 
-    def process_data(self):
+    def _process_data(self):
         print("Processing data for Amex")
         starting_row = 12
         wb = xlrd.open_workbook(self.file_path)
@@ -28,10 +28,8 @@ class Amex(Downloader):
             except IndexError:
                 break
 
-    def _download(self):
+    def _download(self, driver):
         print("Starting Amex download process")
-        driver = self.get_selenium_driver()
-        self._login(driver)
 
         print('Scrolling down to find "Recent Transactions"')
         driver.find_element_by_css_selector("body").send_keys(Keys.PAGE_DOWN)

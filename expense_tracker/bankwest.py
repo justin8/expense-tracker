@@ -15,11 +15,9 @@ class Bankwest(Downloader):
     def __init__(self):
         self.file_path = "/tmp/bankwest.csv"
 
-    def _download(self):
+    def _download(self, driver):
         print("Starting bankwest download process")
         file_glob_pattern = "/tmp/Transactions_*"
-        driver = self.get_selenium_driver()
-        self._login(driver)
 
         try:
             os.remove(self.file_path)
@@ -91,7 +89,7 @@ class Bankwest(Downloader):
         start_date_stamp = start_date.strftime("%d/%m/%Y")
         return [start_date_stamp, end_date_stamp]
 
-    def process_data(self):
+    def _process_data(self):
         print("Processing data for Bankwest")
         self.data = []
         with open(self.file_path) as f:
