@@ -48,12 +48,13 @@ class Downloader(object):
         last_date = calendar.monthrange(year, month_number)[1]
         return last_date
 
-    def get_selenium_driver(self, file_type):
+    def get_selenium_driver(self):
         profile = webdriver.FirefoxProfile()
         profile.set_preference("browser.download.folderList", 2)  # custom location
         profile.set_preference("browser.download.manager.showWhenStarting", False)
         profile.set_preference("browser.download.dir", "/tmp")
-        profile.set_preference("browser.helperApps.neverAsk.saveToDisk", file_type)
+        for file_type in ["application/vnd.ms-excel", "text/csv"]:
+            profile.set_preference("browser.helperApps.neverAsk.saveToDisk", file_type)
         driver = webdriver.Firefox(profile)
         driver.implicitly_wait(20)
         return driver

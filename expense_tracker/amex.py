@@ -30,7 +30,7 @@ class Amex(Downloader):
 
     def _download(self):
         print("Starting Amex download process")
-        driver = self.get_selenium_driver("application/vnd.ms-excel")
+        driver = self.get_selenium_driver()
         self._login(driver)
 
         print('Scrolling down to find "Recent Transactions"')

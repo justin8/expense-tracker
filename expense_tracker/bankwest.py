@@ -18,7 +18,7 @@ class Bankwest(Downloader):
     def _download(self):
         print("Starting bankwest download process")
         file_glob_pattern = "/tmp/Transactions_*"
-        driver = self.get_selenium_driver("text/csv")
+        driver = self.get_selenium_driver()
         self._login(driver)
 
         try:
