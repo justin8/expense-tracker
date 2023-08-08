@@ -56,6 +56,8 @@ def autodetect(row):
         category = "Subscriptions"
     elif match("ADOBESYSTEM", description):
         category = "Education"
+    elif match("Amex Travel Redemption|AMEX TRAVEL ONLINE", description):
+        category = "Holidays"
     elif match("LIFESTYLEREWARDSAUD|TPG|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS", description):
         # Amazon gift card purchase through GU Health
         # Internet
@@ -73,7 +75,7 @@ def autodetect(row):
         category = "Presents"
     elif match("GREATNAILS PTY LTD|RAINBOWNAIL|SP 90 Bowen T", description):
         category = "Celeste"
-    elif match("BPAY PAYMENT-THANK YOU", description):
+    elif match("BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE", description):
         # Delete these rows
         # Credit card repayment
         return None

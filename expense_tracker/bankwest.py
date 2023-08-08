@@ -89,7 +89,7 @@ class Bankwest(Downloader):
         start_date_stamp = start_date.strftime("%d/%m/%Y")
         return [start_date_stamp, end_date_stamp]
 
-    def _process_data(self):
+    def process_data(self):
         print("Processing data for Bankwest")
         self.data = []
         with open(self.file_path) as f:

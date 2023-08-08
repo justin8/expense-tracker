@@ -12,7 +12,7 @@ class Amex(Downloader):
     def __init__(self):
         self.file_path = "/tmp/Summary.xls"
 
-    def _process_data(self):
+    def process_data(self):
         print("Processing data for Amex")
         starting_row = 12
         wb = xlrd.open_workbook(self.file_path)

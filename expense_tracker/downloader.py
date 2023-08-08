@@ -16,7 +16,7 @@ PASSWORDS_FILE = join(os.getcwd(), "site-passwords.json")
 class Downloader(object):
     data = None
 
-    def _process_data(self):
+    def process_data(self):
         raise NotImplementedError("process_data needs to be implemented by a subclass")
 
     def _download(self, driver):
@@ -31,9 +31,11 @@ class Downloader(object):
         """
         raise NotImplementedError("_login needs to be implemented by a subclass")
 
-    def _process_data(self):
+    def process_data(self):
         """
         This method processes the downloaded data and places it in to self.data for later access
+        Expected output format is a list of lists in the order:
+        [date, description, cardholder, amount (without leading minus)]
         """
         raise NotImplementedError("_process_data needs to be implemented by a subclass")
 
@@ -52,7 +54,6 @@ class Downloader(object):
                 print("Aborting")
                 raise ex
             break
-        self._process_data()
 
     def click_obscured_link(self, element):
         for i in range(20):

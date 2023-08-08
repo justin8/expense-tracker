@@ -5,7 +5,7 @@ import pygsheets
 from pygsheets import WorksheetNotFound
 
 from .amex import Amex
-from .bankwest import Bankwest
+from .nab import Nab
 from .parser import autodetect
 
 SPREADSHEET_NAME = "Expense Tracking v2"
@@ -19,16 +19,16 @@ TEMPLATE_NAME = "Template"
     help="Use cached file from previous run instead of re-downloading",
 )
 @click.option(
-    "--no-download-bankwest",
+    "--no-download-nab",
     is_flag=True,
     help="Use cached file from previous run instead of re-downloading",
 )
-def main(no_download_amex, no_download_bankwest):
-    accounts = [Amex(), Bankwest()]
+def main(no_download_amex, no_download_nab):
+    accounts = [Amex(), Nab()]
 
     if not no_download_amex:
         accounts[0].download()
-    if not no_download_bankwest:
+    if not no_download_nab:
         accounts[1].download()
 
     data = []
