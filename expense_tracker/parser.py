@@ -11,7 +11,7 @@ def autodetect(row):
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
         + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO|"
         + "Wolff Coffee Roasters|CLAYFIELD SEAFOOD MARKE|YUENS MARKET|"
-        + "SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU|FRESCO",
+        + "SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU|FRESCO|WOWGIFTCARD",
         description,
     ):
         category = "Groceries"
@@ -52,7 +52,7 @@ def autodetect(row):
         category = "House Improvements"
     elif match("LIQUORLAND|BWS|1ST CHOICE LIQUOR", description):
         category = "Alcohol"
-    elif match("Crunchyroll|Disney|AMAZON WEB SERVICES|TESLA INC|AUDIBLE|GOOGLE GOOGLE|NETFLIX|SPOTIFY|FORWARDEML", description):
+    elif match("Crunchyroll|Disney|AMAZON WEB SERVICES|TESLA INC|AUDIBLE|GOOGLE GOOGLE|NETFLIX|SPOTIFY|FORWARDEML|BACKBLAZE.COM SAN MATEO", description):
         category = "Subscriptions"
     elif match("ADOBESYSTEM", description):
         category = "Education"
@@ -69,13 +69,13 @@ def autodetect(row):
         category = "Untracked"
     elif match("HORSEPOWER PT", description):
         category = "Gym"
-    elif match("AGLSALESPTY", description):
+    elif match("AGLSALESPTY|ALINTA ENERGY", description):
         category = "Power and Gas"
     elif match("MOONPIGCOM", description):
         category = "Presents"
     elif match("GREATNAILS PTY LTD|RAINBOWNAIL|SP 90 Bowen T", description):
         category = "Celeste"
-    elif match("BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE", description):
+    elif match("BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU", description):
         # Delete these rows
         # Credit card repayment
         return None
