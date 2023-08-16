@@ -23,11 +23,8 @@ def autodetect(row):
         category = "Water"
     elif match("TRANSLINK|NUNDAH STATION", description):
         category = "Public Transport"
-    elif match(
-        "PLUME HOLISTIC SKIN|HAIRZOOM|EpicHair|THE SMARTY BARBERS|HMB BARBER|TWO BROTHERS TOOMBUL|PURELY CURLS|BLACKWOOD BARBERS",
-        description,
-    ):
-        category = "Hair"
+    elif match("THE SMARTY BARBERS|HMB BARBER|BLACKWOOD BARBERS", description):
+        category = "Justin"
     elif match("CALTEX|^BP\\b|^PUMA\\b|AMPOL|CHARGEFOX", description):
         category = "Fuel"
     elif match("REPCO|SUPER CHEAP AUTO|TESLA MOTORS AUSTRALIA", description):
@@ -73,8 +70,10 @@ def autodetect(row):
         category = "Power and Gas"
     elif match("MOONPIGCOM", description):
         category = "Presents"
-    elif match("GREATNAILS PTY LTD|RAINBOWNAIL|SP 90 Bowen T", description):
+    elif match("GREATNAILS PTY LTD|RAINBOWNAIL|PLUME SKIN|HAIRZOOM|EpicHair|PURELY CURLS", description):
         category = "Celeste"
+    elif match("BNE187 S807|SP 90 Bowen T", description):
+        category = "Parking"
     elif match("BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU", description):
         # Delete these rows
         # Credit card repayment
