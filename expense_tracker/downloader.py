@@ -4,6 +4,7 @@ import time
 import traceback
 from os.path import join
 import calendar
+import datetime
 
 from selenium import webdriver
 from selenium.common.exceptions import ElementClickInterceptedException
@@ -89,3 +90,17 @@ class Downloader(object):
             username = data[site]["username"]
             password = data[site]["password"]
         return [username, password]
+
+    def _get_dates(self):
+        """
+        Returns the first and last day of the previous month
+
+        :return e.g. ['01/08/2022', '31/08/2022']
+        """
+        today = datetime.date.today()
+        first = today.replace(day=1)
+        end_date = first - datetime.timedelta(days=1)
+        end_date_stamp = end_date.strftime("%d/%m/%Y")
+        start_date = end_date.replace(day=1)
+        start_date_stamp = start_date.strftime("%d/%m/%Y")
+        return [start_date_stamp, end_date_stamp]

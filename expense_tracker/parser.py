@@ -1,5 +1,8 @@
 import re
 
+# Expected spreadsheet format (Downloaders should convert in to this before parsing):
+# Date, Description, Card Member, Amount (In positive numbers, with or without a '$' symbol)
+
 
 def autodetect(row):
     description = company_detection(row)
@@ -11,7 +14,7 @@ def autodetect(row):
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
         + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO|"
         + "Wolff Coffee Roasters|CLAYFIELD SEAFOOD MARKE|YUENS MARKET|"
-        + "SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU|FRESCO|WOWGIFTCARD",
+        + "SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU|FRESCO|WOWGIFTCARD|BREWBAKERS",
         description,
     ):
         category = "Groceries"
@@ -74,7 +77,7 @@ def autodetect(row):
         category = "Celeste"
     elif match("BNE187 S807|SP 90 Bowen T", description):
         category = "Parking"
-    elif match("BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU", description):
+    elif match("BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU|DIRECT DEBIT PAYMENT", description):
         # Delete these rows
         # Credit card repayment
         return None
