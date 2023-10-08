@@ -58,7 +58,7 @@ def autodetect(row):
         category = "Education"
     elif match("Amex Travel Redemption|AMEX TRAVEL ONLINE", description):
         category = "Holidays"
-    elif match("LIFESTYLEREWARDSAUD|TPG|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS", description):
+    elif match("LIFESTYLEREWARDSAUD|TPG|TELCO PAY|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS", description):
         # Amazon gift card purchase through GU Health
         # Internet
         # Optus phone bill
@@ -73,7 +73,7 @@ def autodetect(row):
         category = "Power and Gas"
     elif match("MOONPIGCOM", description):
         category = "Presents"
-    elif match("GREATNAILS PTY LTD|RAINBOWNAIL|PLUME SKIN|HAIRZOOM|EpicHair|PURELY CURLS", description):
+    elif match("GREATNAILS PTY LTD|TIMELYPAY|RAINBOWNAIL|PLUME SKIN|HAIRZOOM|EpicHair|PURELY CURLS", description):
         category = "Celeste"
     elif match("BNE187 S807|SP 90 Bowen T", description):
         category = "Parking"
@@ -114,6 +114,7 @@ def company_detection(row):
         description += " (Charlie's Raw Squeeze)"
     elif match("THE PEACHAN COLLECTIVE", description):
         description += " (KCPSYCH)"
+
     # elif match("apple.com", description):
     #     value = transaction_value(row)
     #     if value == 10.99:
