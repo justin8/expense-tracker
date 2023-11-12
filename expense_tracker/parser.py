@@ -12,9 +12,10 @@ def autodetect(row):
     if match(
         "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS"
         + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
-        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO|"
-        + "Wolff Coffee Roasters|CLAYFIELD SEAFOOD MARKE|YUENS MARKET|"
-        + "SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU|FRESCO|WOWGIFTCARD|BREWBAKERS",
+        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO"
+        + "|Wolff Coffee Roasters|CLAYFIELD SEAFOOD MARKE|YUENS MARKET"
+        + "|SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU|FRESCO|WOWGIFTCARD|BREWBAKERS"
+        + "|SUMBAL|T-Bones",
         description,
     ):
         category = "Groceries"
@@ -40,7 +41,7 @@ def autodetect(row):
     elif match("VETERINARY|PETBARN|Vet|FOUR PAW", description):
         category = "Pet Expenses"
     elif match(
-        "Excella|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR|GU HEALTH|K C PSYCH|PLINE|THE PEACHAN COLLECTIVE",
+        "Excella|Dr Mehrzad Entezami|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR|GU HEALTH|K C PSYCH|PLINE|THE PEACHAN COLLECTIVE",
         description,
     ):
         category = "Health/Medical"
@@ -52,7 +53,7 @@ def autodetect(row):
         category = "House Improvements"
     elif match("LIQUORLAND|BWS|1ST CHOICE LIQUOR", description):
         category = "Alcohol"
-    elif match("Crunchyroll|Disney|AMAZON WEB SERVICES|TESLA INC|AUDIBLE|GOOGLE GOOGLE|NETFLIX|SPOTIFY|FORWARDEML|BACKBLAZE.COM SAN MATEO", description):
+    elif match("Crunchyroll|Disney|AMAZON WEB SERVICES|TESLA INC|AUDIBLE|GOOGLE STORAGE|GEEKHUB|USENETBLOCK|NETFLIX|SPOTIFY|FORWARDEML|BACKBLAZE.COM", description):
         category = "Subscriptions"
     elif match("ADOBESYSTEM", description):
         category = "Education"
