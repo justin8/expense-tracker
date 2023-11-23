@@ -15,15 +15,9 @@ class Nab(Downloader):
         file_path = Path("~/Downloads/Transactions.csv").expanduser().resolve()
         self.file_path = str(file_path)
 
-    def _download(self, driver):
-        print("Starting NAB download process")
-        print("NAB's anti-bot protections are annoying. Download last month's transactions to ~/Downloads/Transactions.csv")
-        input("Press enter to continue once the file is downloaded")
-
-        print("Successfully retrieved data from NAB")
-
-    def _login(self, driver):
-        pass
+    def _manual_download_required(self):
+        print(f"NAB's anti-bot protections are annoying. Download last month's transactions to  {self.file_path}")
+        return True
 
     def process_data(self):
         print("Processing data for NAB")

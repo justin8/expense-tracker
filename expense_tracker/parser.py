@@ -15,7 +15,7 @@ def autodetect(row):
         + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO"
         + "|Wolff Coffee Roasters|CLAYFIELD SEAFOOD MARKE|YUENS MARKET"
         + "|SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU|FRESCO|WOWGIFTCARD|BREWBAKERS"
-        + "|SUMBAL|T-Bones",
+        + "|SUMBAL|T-Bones|BRUMBYS BAKERY",
         description,
     ):
         category = "Groceries"
@@ -41,7 +41,9 @@ def autodetect(row):
     elif match("VETERINARY|PETBARN|Vet|FOUR PAW", description):
         category = "Pet Expenses"
     elif match(
-        "Excella|Dr Mehrzad Entezami|MARC MILLER|FRIENDLY CARE|GRK PARTNERS|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR|GU HEALTH|K C PSYCH|PLINE|THE PEACHAN COLLECTIVE",
+        "Excella|Dr Mehrzad Entezami|MARC MILLER|FRIENDLY CARE|GRK PARTNERS"
+        + "|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR"
+        + "|GU HEALTH|K C PSYCH|PLINE|THE PEACHAN COLLECTIVE|ReddyMedical",
         description,
     ):
         category = "Health/Medical"
@@ -59,7 +61,9 @@ def autodetect(row):
         category = "Education"
     elif match("Amex Travel Redemption|AMEX TRAVEL ONLINE", description):
         category = "Holidays"
-    elif match("LIFESTYLEREWARDSAUD|TPG|TELCO PAY|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS", description):
+    elif match(
+        "LIFESTYLEREWARDSAUD|TPG|TELCO PAY|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS|RING YEARLY PLAN|AMZNPRIMEAU MEMBERSHIP", description
+    ):
         # Amazon gift card purchase through GU Health
         # Internet
         # Optus phone bill
@@ -67,6 +71,8 @@ def autodetect(row):
         # Moose Mobile phone bill
         # Insurance
         # Rego
+        # Ring
+        # Prime membership
         category = "Untracked"
     elif match("HORSEPOWER PT", description):
         category = "Gym"
@@ -76,9 +82,9 @@ def autodetect(row):
         category = "Presents"
     elif match("GREATNAILS PTY LTD|TIMELYPAY|RAINBOWNAIL|PLUME SKIN|HAIRZOOM|EpicHair|PURELY CURLS", description):
         category = "Celeste"
-    elif match("BNE187 S807|SP 90 Bowen T", description):
+    elif match("BNE187 S807|WestfieldChermside S805|SP 90 Bowen T", description):
         category = "Parking"
-    elif match("BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU|DIRECT DEBIT PAYMENT", description):
+    elif match("BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU|DIRECT DEBIT PAYMENT|DIRECT DEBIT RECEIVED", description):
         # Delete these rows
         # Credit card repayment
         return None

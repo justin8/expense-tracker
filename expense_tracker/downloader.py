@@ -40,21 +40,25 @@ class Downloader(object):
         """
         raise NotImplementedError("_process_data needs to be implemented by a subclass")
 
+    def _manual_download_required(self):
+        return False
+
     def download(self):
-        while True:
-            try:
-                driver = self._get_selenium_driver()
-                self._login(driver)
-                self._download(driver)
-            except Exception as ex:
-                traceback.print_exc()
-                response = input("An error has occurred during download. Do you want to try again? (y/n)\n")
-                if response.lower().startswith("y"):
-                    print("Retrying...")
-                    continue
-                print("Aborting")
-                raise ex
-            break
+        if not self._manual_download_required():
+            while True:
+                try:
+                    driver = self._get_selenium_driver()
+                    self._login(driver)
+                    self._download(driver)
+                except Exception as ex:
+                    traceback.print_exc()
+                    response = input("An error has occurred during download. Do you want to try again? (y/n)\n")
+                    if response.lower().startswith("y"):
+                        print("Retrying...")
+                        continue
+                    print("Aborting")
+                    raise ex
+                break
 
     def click_obscured_link(self, element):
         for i in range(20):
