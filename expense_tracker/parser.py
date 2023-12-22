@@ -27,7 +27,7 @@ def autodetect(row):
         category = "Water"
     elif match("TRANSLINK|NUNDAH STATION", description):
         category = "Public Transport"
-    elif match("THE SMARTY BARBERS|HMB BARBER|BLACKWOOD BARBERS", description):
+    elif match("THE SMARTY BARBERS|HMB BARBER|BLACKWOOD BARBERS|BABYLON & CO", description):
         category = "Justin"
     elif match("CALTEX|^BP\\b|^PUMA\\b|AMPOL|CHARGEFOX", description):
         category = "Fuel"
@@ -62,9 +62,8 @@ def autodetect(row):
     elif match("Amex Travel Redemption|AMEX TRAVEL ONLINE", description):
         category = "Holidays"
     elif match(
-        "LIFESTYLEREWARDSAUD|TPG|TELCO PAY|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS|RING YEARLY PLAN|AMZNPRIMEAU MEMBERSHIP", description
+        "TPG|TELCO PAY|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS|RING YEARLY PLAN|AMZNPRIMEAU MEMBERSHIP", description
     ):
-        # Amazon gift card purchase through GU Health
         # Internet
         # Optus phone bill
         # Vodafone phone bill
