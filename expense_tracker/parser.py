@@ -29,6 +29,8 @@ def autodetect(row):
         category = "Public Transport"
     elif match("THE SMARTY BARBERS|HMB BARBER|BLACKWOOD BARBERS|BABYLON & CO", description):
         category = "Justin"
+    elif match("AGLSALESPTY|ALINTA ENERGY|AMPOL ENERGY", description):
+        category = "Power and Gas"
     elif match("CALTEX|^BP\\b|^PUMA\\b|AMPOL|CHARGEFOX", description):
         category = "Fuel"
     elif match("REPCO|SUPER CHEAP AUTO|TESLA MOTORS AUSTRALIA", description):
@@ -43,7 +45,7 @@ def autodetect(row):
     elif match(
         "Excella|Dr Mehrzad Entezami|MARC MILLER|FRIENDLY CARE|GRK PARTNERS"
         + "|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR"
-        + "|GU HEALTH|K C PSYCH|PLINE|THE PEACHAN COLLECTIVE|ReddyMedical",
+        + "|GU HEALTH|K C PSYCH|PLINE|THE PEACHAN COLLECTIVE|ReddyMedical|MOHS CLAYFIELD",
         description,
     ):
         category = "Health/Medical"
@@ -73,10 +75,6 @@ def autodetect(row):
         # Ring
         # Prime membership
         category = "Untracked"
-    elif match("HORSEPOWER PT", description):
-        category = "Gym"
-    elif match("AGLSALESPTY|ALINTA ENERGY", description):
-        category = "Power and Gas"
     elif match("MOONPIGCOM", description):
         category = "Presents"
     elif match("GREATNAILS PTY LTD|TIMELYPAY|RAINBOWNAIL|PLUME SKIN|HAIRZOOM|EpicHair|PURELY CURLS", description):
@@ -120,6 +118,8 @@ def company_detection(row):
         description += " (Charlie's Raw Squeeze)"
     elif match("THE PEACHAN COLLECTIVE", description):
         description += " (KCPSYCH)"
+    elif match("MOHS CLAYFIELD", description):
+        description += " - Dermatologist"
 
     # elif match("apple.com", description):
     #     value = transaction_value(row)
