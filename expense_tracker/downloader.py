@@ -1,10 +1,10 @@
+import calendar
+import datetime
 import json
 import os
 import time
 import traceback
 from os.path import join
-import calendar
-import datetime
 
 from selenium import webdriver
 from selenium.common.exceptions import ElementClickInterceptedException

@@ -45,11 +45,12 @@ def autodetect(row):
     elif match(
         "Excella|Dr Mehrzad Entezami|MARC MILLER|FRIENDLY CARE|GRK PARTNERS"
         + "|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR"
-        + "|GU HEALTH|K C PSYCH|PLINE|THE PEACHAN COLLECTIVE|ReddyMedical|MOHS CLAYFIELD",
+        + "|GU HEALTH|K C PSYCH|PLINE|THE PEACHAN COLLECTIVE|ReddyMedical|MOHS CLAYFIELD"
+        + "|MHS PSYCHOLOGY",
         description,
     ):
         category = "Health/Medical"
-    elif match("Goodlife", description):
+    elif match("Goodlife|N0BIS TRAINING", description):
         category = "Fitness"
     elif match("LINKT BRISBANE", description):
         category = "Toll Roads"
@@ -57,7 +58,7 @@ def autodetect(row):
         category = "House Improvements"
     elif match("LIQUORLAND|BWS|1ST CHOICE LIQUOR", description):
         category = "Alcohol"
-    elif match("Crunchyroll|Disney|AMAZON WEB SERVICES|TESLA INC|AUDIBLE|GOOGLE STORAGE|GEEKHUB|USENETBLOCK|NETFLIX|SPOTIFY|FORWARDEML|BACKBLAZE.COM", description):
+    elif match("Crunchyroll|Disney|AMAZON WEB SERVICES|TESLA INC|AUDIBLE|GOOGLE STORAGE|GEEKHUB|USENETBLOCK|NETFLIX|SPOTIFY|FORWARDEML|BACKBLAZE", description):
         category = "Subscriptions"
     elif match("ADOBESYSTEM", description):
         category = "Education"
@@ -120,6 +121,8 @@ def company_detection(row):
         description += " (KCPSYCH)"
     elif match("MOHS CLAYFIELD", description):
         description += " - Dermatologist"
+    elif match("DOUBLE LIFT PTY LTD", description):
+        description += " (Hanok Korean BBQ)"
 
     # elif match("apple.com", description):
     #     value = transaction_value(row)
