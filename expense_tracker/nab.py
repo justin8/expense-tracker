@@ -1,11 +1,5 @@
 import csv
-import os
 from pathlib import Path
-
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
 
 from .downloader import Downloader
 
@@ -16,7 +10,9 @@ class Nab(Downloader):
         self.file_path = str(file_path)
 
     def _manual_download_required(self):
-        print(f"NAB's anti-bot protections are annoying. Download last month's transactions to  {self.file_path}")
+        print(
+            f"NAB's anti-bot protections are annoying. Download last month's transactions to  {self.file_path}"
+        )
         return True
 
     def process_data(self):

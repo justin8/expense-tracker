@@ -17,9 +17,6 @@ PASSWORDS_FILE = join(os.getcwd(), "site-passwords.json")
 class Downloader(object):
     data = None
 
-    def process_data(self):
-        raise NotImplementedError("process_data needs to be implemented by a subclass")
-
     def _download(self, driver):
         """
         This method should from a logged in account, download the required data locally
@@ -52,7 +49,9 @@ class Downloader(object):
                     self._download(driver)
                 except Exception as ex:
                     traceback.print_exc()
-                    response = input("An error has occurred during download. Do you want to try again? (y/n)\n")
+                    response = input(
+                        "An error has occurred during download. Do you want to try again? (y/n)\n"
+                    )
                     if response.lower().startswith("y"):
                         print("Retrying...")
                         continue
