@@ -40,7 +40,7 @@ def autodetect(row):
     elif match("REPCO|SUPER CHEAP AUTO|TESLA MOTORS AUSTRALIA", description):
         category = "Vehicle Maintenance"
     elif match(
-        "CARLSON WAGONLIT|BNE187 S807|O'GABEE COFFEE|Wilson",
+        "CARLSON WAGONLIT|BNE187 S807|O'GABEE COFFEE|Wilson|VODAFONE",
         description,
     ):
         category = "Work Expense"
@@ -72,7 +72,7 @@ def autodetect(row):
     elif match("Amex Travel Redemption|AMEX TRAVEL ONLINE", description):
         category = "Holidays"
     elif match(
-        "TPG|TELCO PAY|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS|RING YEARLY PLAN|AMZNPRIMEAU MEMBERSHIP",
+        "TPG|TELCO PAY|OPTUS BILLING AUTOPAY|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS|RING YEARLY PLAN|AMZNPRIMEAU MEMBERSHIP",
         description,
     ):
         # Internet
