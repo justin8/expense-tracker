@@ -5,7 +5,7 @@ import pygsheets
 from pygsheets import WorksheetNotFound
 
 from .amex import Amex
-from .nab import Nab
+from .cba import Cba
 from .parser import autodetect
 
 SPREADSHEET_NAME = "Expense Tracking v2"
@@ -13,23 +13,8 @@ TEMPLATE_NAME = "Template"
 
 
 @click.command()
-@click.option(
-    "--no-download-amex",
-    is_flag=True,
-    help="Use cached file from previous run instead of re-downloading",
-)
-@click.option(
-    "--no-download-nab",
-    is_flag=True,
-    help="Use cached file from previous run instead of re-downloading",
-)
-def main(no_download_amex, no_download_nab):
-    accounts = [Amex(), Nab()]
-
-    if not no_download_amex:
-        accounts[0].download()
-    if not no_download_nab:
-        accounts[1].download()
+def main():
+    accounts = [Amex(), Cba()]
 
     data = []
     for account in accounts:
@@ -73,7 +58,9 @@ def clone_template_to(sheet, new_name):
         pass
 
     print(f"Cloning to new worksheet {new_name}...")
-    worksheet = sheet.add_worksheet(new_name, src_worksheet=sheet.worksheet_by_title(TEMPLATE_NAME))
+    worksheet = sheet.add_worksheet(
+        new_name, src_worksheet=sheet.worksheet_by_title(TEMPLATE_NAME)
+    )
     worksheet.hidden = False
     return worksheet
 

@@ -7,12 +7,6 @@ class Amex(Downloader):
     def __init__(self):
         self.file_path = "~/Downloads/activity.xlsx"
 
-    def _manual_download_required(self):
-        print(
-            f"Amex's anti-bot protections are annoying. Download last month's transactions to {self.file_path}"
-        )
-        return True
-
     def process_data(self):
         print("Processing data for Amex")
         starting_row = 12

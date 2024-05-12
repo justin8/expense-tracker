@@ -21,13 +21,17 @@ def autodetect(row):
         category = "Groceries"
     elif match("MARLEYSPOON", description):
         category = "Food"
-    elif match("UBER|DIDI MOBILI|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES|JANG & JANG", description):
+    elif match(
+        "UBER|DIDI MOBILI|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES|JANG & JANG", description
+    ):
         category = cardholder(row)
     elif match("QUEENSLAND URBAN UTI", description):
         category = "Water"
     elif match("TRANSLINK|NUNDAH STATION", description):
         category = "Public Transport"
-    elif match("THE SMARTY BARBERS|HMB BARBER|BLACKWOOD BARBERS|BABYLON & CO", description):
+    elif match(
+        "THE SMARTY BARBERS|HMB BARBER|BLACKWOOD BARBERS|BABYLON & CO", description
+    ):
         category = "Justin"
     elif match("AGLSALESPTY|ALINTA ENERGY|AMPOL ENERGY", description):
         category = "Power and Gas"
@@ -58,14 +62,18 @@ def autodetect(row):
         category = "House Improvements"
     elif match("LIQUORLAND|BWS|1ST CHOICE LIQUOR", description):
         category = "Alcohol"
-    elif match("Crunchyroll|Disney|AMAZON WEB SERVICES|TESLA INC|AUDIBLE|GOOGLE STORAGE|GEEKHUB|USENETBLOCK|NETFLIX|SPOTIFY|FORWARDEML|BACKBLAZE", description):
+    elif match(
+        "Crunchyroll|Disney|AMAZON WEB SERVICES|TESLA INC|AUDIBLE|GOOGLE STORAGE|GEEKHUB|USENETBLOCK|NETFLIX|SPOTIFY|FORWARDEML|BACKBLAZE",
+        description,
+    ):
         category = "Subscriptions"
     elif match("ADOBESYSTEM", description):
         category = "Education"
     elif match("Amex Travel Redemption|AMEX TRAVEL ONLINE", description):
         category = "Holidays"
     elif match(
-        "TPG|TELCO PAY|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS|RING YEARLY PLAN|AMZNPRIMEAU MEMBERSHIP", description
+        "TPG|TELCO PAY|OPTUS BILLING AUTOPAY|VODAFONE|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS|RING YEARLY PLAN|AMZNPRIMEAU MEMBERSHIP",
+        description,
     ):
         # Internet
         # Optus phone bill
@@ -78,11 +86,17 @@ def autodetect(row):
         category = "Untracked"
     elif match("MOONPIGCOM", description):
         category = "Presents"
-    elif match("GREATNAILS PTY LTD|TIMELYPAY|RAINBOWNAIL|PLUME SKIN|HAIRZOOM|EpicHair|PURELY CURLS", description):
+    elif match(
+        "GREATNAILS PTY LTD|TIMELYPAY|RAINBOWNAIL|PLUME SKIN|HAIRZOOM|EpicHair|PURELY CURLS",
+        description,
+    ):
         category = "Celeste"
     elif match("BNE187 S807|WestfieldChermside S805|SP 90 Bowen T", description):
         category = "Parking"
-    elif match("BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU|DIRECT DEBIT PAYMENT|DIRECT DEBIT RECEIVED", description):
+    elif match(
+        "BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU|DIRECT DEBIT PAYMENT|DIRECT DEBIT RECEIVED",
+        description,
+    ):
         # Delete these rows
         # Credit card repayment
         return None
