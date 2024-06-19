@@ -94,7 +94,7 @@ def autodetect(row):
     elif match("BNE187 S807|WestfieldChermside S805|SP 90 Bowen T", description):
         category = "Parking"
     elif match(
-        "BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|\+ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU|DIRECT DEBIT PAYMENT|DIRECT DEBIT RECEIVED",
+        "BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU|DIRECT DEBIT PAYMENT|DIRECT DEBIT RECEIVED",
         description,
     ):
         # Delete these rows
