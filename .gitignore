@@ -144,3 +144,4 @@ sheets.googleapis.com-python.json
 site-passwords.json
 .vscode
 geckodriver.log
+.aider*

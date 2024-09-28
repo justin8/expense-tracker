@@ -57,7 +57,7 @@ def autodetect(row):
         ],
         "Power and Gas": ["AGLSALESPTY", "ALINTA ENERGY", "AMPOL ENERGY"],
         "Fuel": ["CALTEX", "^BP\\b", "^PUMA\\b", "AMPOL", "CHARGEFOX"],
-        "Vehicle Maintenance": ["REPCO", "SUPER CHEAP AUTO", "TESLA MOTORS AUSTRALIA"],
+        "Vehicle Maintenance": ["REPCO", "SUPER CHEAP AUTO", "Tesla "],
         "Work Expense": [
             "CARLSON WAGONLIT",
             "BNE187 S807",
@@ -92,7 +92,7 @@ def autodetect(row):
             "Crunchyroll",
             "Disney",
             "AMAZON WEB SERVICES",
-            "TESLA INC",
+            "TESLA",
             "AUDIBLE",
             "GOOGLE STORAGE",
             "GEEKHUB",
@@ -137,7 +137,7 @@ def autodetect(row):
 
     for category, patterns in mapping.items():
         for pattern in patterns:
-            if re.search(pattern, description):
+            if match(pattern, description):
                 if category == "Cardholder":
                     return cardholder(row)  # Special case for Cardholder category
                 elif category == "Delete":

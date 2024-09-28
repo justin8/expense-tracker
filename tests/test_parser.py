@@ -1,5 +1,12 @@
 import unittest
-from expense_tracker.parser import autodetect, cardholder, company_detection, transaction_value, match
+
+from expense_tracker.parser import (
+    autodetect,
+    cardholder,
+    company_detection,
+    match,
+    transaction_value,
+)
 
 
 class TestParser(unittest.TestCase):
@@ -7,7 +14,7 @@ class TestParser(unittest.TestCase):
         row = ["2024-09-28", "Woolworths", "John Doe", "$50.00"]
         result = autodetect(row)
         self.assertEqual(result[0], "Groceries")
-        self.assertEqual(result[1], "Woolworths")
+        self.assertEqual(result[2], "Woolworths")
 
     def test_cardholder(self):
         row = ["2024-09-28", "Woolworths", "John Doe", "$50.00"]
