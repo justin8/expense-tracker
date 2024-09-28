@@ -27,7 +27,7 @@ def autodetect(row):
             "bulknutrien",
             "ww metro",
             "wolff coffee roasters",
-            "clayfield seafood marke",
+            "clayfield seafood mar",
             "yuens market",
             "sunlit asian supermar",
             "zerococomau",
@@ -83,6 +83,7 @@ def autodetect(row):
             "reddymedical",
             "mohs clayfield",
             "mhs psychology",
+            "chemist warehouse",
         ],
         "Fitness": ["goodlife", "n0bis training"],
         "Toll Roads": ["linkt brisbane"],
@@ -95,6 +96,7 @@ def autodetect(row):
             "tesla",
             "audible",
             "google storage",
+            "google one",
             "geekhub",
             "usenetblock",
             "netflix",
@@ -122,6 +124,7 @@ def autodetect(row):
             "hairzoom",
             "epichair",
             "purely curls",
+            "^zlr"
         ],
         "Parking": ["bne187 s807", "westfieldchermside s805", "sp 90 bowen t"],
         "Delete": [
@@ -132,6 +135,7 @@ def autodetect(row):
             "direct debit payment",
             "direct debit received",
             "payment received, thank you",
+            "Payment - BPAY",
         ],
     }
 
