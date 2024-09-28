@@ -9,101 +9,142 @@ def autodetect(row):
     row[1] = description
     category = "Unknown"
 
-    if match(
-        "GOOD MORNING ASIAN|NIKOS FRUIT|HANARO|DAN MURPHYS|BWS"
-        + "|woolworths|\\bIGA\\b|COLES|ALDI\\b|FOODWORKS|FRESH SENSATIONS"
-        + "|FRUITS OF EDEN|HARRIS FARM MARKETS|BULKNUTRIEN|WW METRO"
-        + "|Wolff Coffee Roasters|CLAYFIELD SEAFOOD MARKE|YUENS MARKET"
-        + "|SUNLIT ASIAN SUPERMAR|ZEROCOCOMAU|FRESCO|WOWGIFTCARD|BREWBAKERS"
-        + "|SUMBAL|T-Bones|BRUMBYS BAKERY",
-        description,
-    ):
-        category = "Groceries"
-    elif match("MARLEYSPOON", description):
-        category = "Food"
-    elif match(
-        "UBER|DIDI MOBILI|ITUNES.COM|HUMBLEBUNDL|STEAM GAMES|JANG & JANG", description
-    ):
-        category = cardholder(row)
-    elif match("QUEENSLAND URBAN UTI", description):
-        category = "Water"
-    elif match("TRANSLINK|NUNDAH STATION", description):
-        category = "Public Transport"
-    elif match(
-        "THE SMARTY BARBERS|HMB BARBER|BLACKWOOD BARBERS|BABYLON & CO", description
-    ):
-        category = "Justin"
-    elif match("AGLSALESPTY|ALINTA ENERGY|AMPOL ENERGY", description):
-        category = "Power and Gas"
-    elif match("CALTEX|^BP\\b|^PUMA\\b|AMPOL|CHARGEFOX", description):
-        category = "Fuel"
-    elif match("REPCO|SUPER CHEAP AUTO|TESLA MOTORS AUSTRALIA", description):
-        category = "Vehicle Maintenance"
-    elif match(
-        "CARLSON WAGONLIT|BNE187 S807|O'GABEE COFFEE|Wilson|VODAFONE",
-        description,
-    ):
-        category = "Work Expense"
-    elif match("VETERINARY|PETBARN|Vet|FOUR PAW", description):
-        category = "Pet Expenses"
-    elif match(
-        "Excella|Dr Mehrzad Entezami|MARC MILLER|FRIENDLY CARE|GRK PARTNERS"
-        + "|MEDICARE|MCARE BENEFITS|GRAND UNITED CORPORATE|POST OFFICE SQUARE PHAR"
-        + "|GU HEALTH|K C PSYCH|PLINE|THE PEACHAN COLLECTIVE|ReddyMedical|MOHS CLAYFIELD"
-        + "|MHS PSYCHOLOGY",
-        description,
-    ):
-        category = "Health/Medical"
-    elif match("Goodlife|N0BIS TRAINING", description):
-        category = "Fitness"
-    elif match("LINKT BRISBANE", description):
-        category = "Toll Roads"
-    elif match("IKEA|PILLOW TALK", description):
-        category = "House Improvements"
-    elif match("LIQUORLAND|BWS|1ST CHOICE LIQUOR", description):
-        category = "Alcohol"
-    elif match(
-        "Crunchyroll|Disney|AMAZON WEB SERVICES|TESLA INC|AUDIBLE|GOOGLE STORAGE|GEEKHUB|USENETBLOCK|NETFLIX|SPOTIFY|FORWARDEML|BACKBLAZE",
-        description,
-    ):
-        category = "Subscriptions"
-    elif match("ADOBESYSTEM", description):
-        category = "Education"
-    elif match("Amex Travel Redemption|AMEX TRAVEL ONLINE", description):
-        category = "Holidays"
-    elif match(
-        "TPG|TELCO PAY|OPTUS BILLING AUTOPAY|TELCO PAY FORTITUDE VALLE|Insurance|TRANSPORTMAINRDS|RING YEARLY PLAN|AMZNPRIMEAU MEMBERSHIP",
-        description,
-    ):
-        # Internet
-        # Optus phone bill
-        # Vodafone phone bill
-        # Moose Mobile phone bill
-        # Insurance
-        # Rego
-        # Ring
-        # Prime membership
-        category = "Untracked"
-    elif match("MOONPIGCOM", description):
-        category = "Presents"
-    elif match("PLUME SKIN", description):
-        category = "Grooming"
-    elif match(
-        "GREATNAILS PTY LTD|TIMELYPAY|RAINBOWNAIL|HAIRZOOM|EpicHair|PURELY CURLS",
-        description,
-    ):
-        category = "Celeste"
-    elif match("BNE187 S807|WestfieldChermside S805|SP 90 Bowen T", description):
-        category = "Parking"
-    elif match(
-        "BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU|DIRECT DEBIT PAYMENT|DIRECT DEBIT RECEIVED|PAYMENT RECEIVED, THANK YOU",
-        description,
-    ):
-        # Delete these rows
-        # Credit card repayment
-        return None
+    mapping = {
+        "Groceries": [
+            "GOOD MORNING ASIAN",
+            "NIKOS FRUIT",
+            "HANARO",
+            "DAN MURPHYS",
+            "BWS",
+            "woolworths",
+            "\\bIGA\\b",
+            "COLES",
+            "ALDI\\b",
+            "FOODWORKS",
+            "FRESH SENSATIONS",
+            "FRUITS OF EDEN",
+            "HARRIS FARM MARKETS",
+            "BULKNUTRIEN",
+            "WW METRO",
+            "Wolff Coffee Roasters",
+            "CLAYFIELD SEAFOOD MARKE",
+            "YUENS MARKET",
+            "SUNLIT ASIAN SUPERMAR",
+            "ZEROCOCOMAU",
+            "FRESCO",
+            "WOWGIFTCARD",
+            "BREWBAKERS",
+            "SUMBAL",
+            "T-Bones",
+            "BRUMBYS BAKERY",
+        ],
+        "Food": ["MARLEYSPOON"],
+        "Cardholder": [
+            "UBER",
+            "DIDI MOBILI",
+            "ITUNES.COM",
+            "HUMBLEBUNDL",
+            "STEAM GAMES",
+            "JANG & JANG",
+        ],
+        "Water": ["QUEENSLAND URBAN UTI"],
+        "Public Transport": ["TRANSLINK", "NUNDAH STATION"],
+        "Justin": [
+            "THE SMARTY BARBERS",
+            "HMB BARBER",
+            "BLACKWOOD BARBERS",
+            "BABYLON & CO",
+        ],
+        "Power and Gas": ["AGLSALESPTY", "ALINTA ENERGY", "AMPOL ENERGY"],
+        "Fuel": ["CALTEX", "^BP\\b", "^PUMA\\b", "AMPOL", "CHARGEFOX"],
+        "Vehicle Maintenance": ["REPCO", "SUPER CHEAP AUTO", "TESLA MOTORS AUSTRALIA"],
+        "Work Expense": [
+            "CARLSON WAGONLIT",
+            "BNE187 S807",
+            "O'GABEE COFFEE",
+            "Wilson",
+            "VODAFONE",
+        ],
+        "Pet Expenses": ["VETERINARY", "PETBARN", "Vet", "FOUR PAW"],
+        "Health/Medical": [
+            "Excella",
+            "Dr Mehrzad Entezami",
+            "MARC MILLER",
+            "FRIENDLY CARE",
+            "GRK PARTNERS",
+            "MEDICARE",
+            "MCARE BENEFITS",
+            "GRAND UNITED CORPORATE",
+            "POST OFFICE SQUARE PHAR",
+            "GU HEALTH",
+            "K C PSYCH",
+            "PLINE",
+            "THE PEACHAN COLLECTIVE",
+            "ReddyMedical",
+            "MOHS CLAYFIELD",
+            "MHS PSYCHOLOGY",
+        ],
+        "Fitness": ["Goodlife", "N0BIS TRAINING"],
+        "Toll Roads": ["LINKT BRISBANE"],
+        "House Improvements": ["IKEA", "PILLOW TALK"],
+        "Alcohol": ["LIQUORLAND", "BWS", "1ST CHOICE LIQUOR"],
+        "Subscriptions": [
+            "Crunchyroll",
+            "Disney",
+            "AMAZON WEB SERVICES",
+            "TESLA INC",
+            "AUDIBLE",
+            "GOOGLE STORAGE",
+            "GEEKHUB",
+            "USENETBLOCK",
+            "NETFLIX",
+            "SPOTIFY",
+            "FORWARDEML",
+            "BACKBLAZE",
+        ],
+        "Education": ["ADOBESYSTEM"],
+        "Holidays": ["Amex Travel Redemption", "AMEX TRAVEL ONLINE"],
+        "Untracked": [
+            "TPG", # Internet
+            "TELCO PAY", # Moose Mobile
+            "OPTUS BILLING AUTOPAY",
+            "Insurance", # Tracked in budget
+            "TRANSPORTMAINRDS", # Tracked in budget
+            "RING YEARLY PLAN", # Tracked in budget
+            "AMZNPRIMEAU MEMBERSHIP", # Tracked in budget
+        ],
+        "Presents": ["MOONPIGCOM"],
+        "Grooming": ["PLUME SKIN"],
+        "Celeste": [
+            "GREATNAILS PTY LTD",
+            "TIMELYPAY",
+            "RAINBOWNAIL",
+            "HAIRZOOM",
+            "EpicHair",
+            "PURELY CURLS",
+        ],
+        "Parking": ["BNE187 S807", "WestfieldChermside S805", "SP 90 Bowen T"],
+        "Delete": [
+            "BPAY PAYMENT-THANK YOU",
+            "INTERNET PAYMENT Linked Acc Trns",
+            "ANNUAL FEE",
+            "CASH/TRANSFER PAYMENT - THANK YOU",
+            "DIRECT DEBIT PAYMENT",
+            "DIRECT DEBIT RECEIVED",
+            "PAYMENT RECEIVED, THANK YOU",
+        ],
+    }
 
-    return [category] + row
+    for category, patterns in mapping.items():
+        for pattern in patterns:
+            if re.search(pattern, description):
+                if category == "Cardholder":
+                    return cardholder(row)  # Special case for Cardholder category
+                elif category == "Delete":
+                    return None  # Delete rows case
+                else:
+                    return [category] + row
+    return ["Unknown"] + row
 
 
 def cardholder(row):
@@ -116,38 +157,24 @@ def cardholder(row):
 def company_detection(row):
     description = row[1]
 
-    # Add description to Sushi Edo's cryptic name
-    if match("JANG & JANG", description):
-        description += " (Sushi Edo)"
-    elif match("VANINA HOLDINGS", description):
-        description += " (Bakers Delight Toombul)"
-    elif match("SUMBAL", description):
-        description += " (Brumby's Nundah)"
-    elif match("JAI SAKHI BABA", description):
-        description += " (Noodle Box Nundah)"
-    elif match("THE TRUSTEE FOR CHICKE", description):
-        description += " (You Came Again)"
-    elif match("LIVIN LA VIDA LATROBA", description):
-        description += " (King Tea)"
-    elif match("BNE187 S807", description):
-        description += " (300 George Street parking)"
-    elif match("RSQ", description):
-        description += " (Charlie's Raw Squeeze)"
-    elif match("THE PEACHAN COLLECTIVE", description):
-        description += " (KCPSYCH)"
-    elif match("MOHS CLAYFIELD", description):
-        description += " - Dermatologist"
-    elif match("DOUBLE LIFT PTY LTD", description):
-        description += " (Hanok Korean BBQ)"
+    mapping = {
+        "Sushi Edo": "JANG & JANG",
+        "Bakers Delight Toombul": "VANINA HOLDINGS",
+        "Brumby's Nundah": "SUMBAL",
+        "Noodle Box Nundah": "JAI SAKHI BABA",
+        "You Came Again": "THE TRUSTEE FOR CHICKE",
+        "King Tea": "LIVIN LA VIDA LATROBA",
+        "300 George Street parking": "BNE187 S807",
+        "Charlie's Raw Squeeze": "RSQ",
+        "KCPSYCH": "THE PEACHAN COLLECTIVE",
+        "Dermatologist": "MOHS CLAYFIELD",
+        "Hanok Korean BBQ": "DOUBLE LIFT PTY LTD",
+        "Chilink massage": "9STAR",
+    }
 
-    # elif match("apple.com", description):
-    #     value = transaction_value(row)
-    #     if value == 10.99:
-    #         description += " (Crunchyroll)"
-    #     if value == 11.99:
-    #         description += " (Disney+)"
-    # Unknown so far:
-    # PARKJUN
+    for name, pattern in mapping.items():
+        if match(pattern, description):
+            description += f" ({name})"
 
     return description
 
