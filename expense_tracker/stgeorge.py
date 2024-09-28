@@ -15,6 +15,7 @@ class StGeorge(Downloader):
         self.data = []
         with open(self.file_path) as f:
             file = csv.reader(f)
+            next(file)
             for row in file:
                 value = row[2] if row[2] else row[3]
                 output_row = [row[0], row[1], "", value]
