@@ -4,9 +4,9 @@ import click
 import pygsheets
 from pygsheets import WorksheetNotFound
 
-from .amex import Amex
 from .cba import Cba
 from .parser import autodetect
+from .stgeorge import StGeorge
 
 SPREADSHEET_NAME = "Expense Tracking v2"
 TEMPLATE_NAME = "Template"
@@ -14,7 +14,7 @@ TEMPLATE_NAME = "Template"
 
 @click.command()
 def main():
-    accounts = [Amex(), Cba()]
+    accounts = [Cba(), StGeorge()]
 
     data = []
     for account in accounts:

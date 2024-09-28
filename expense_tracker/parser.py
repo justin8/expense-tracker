@@ -86,15 +86,17 @@ def autodetect(row):
         category = "Untracked"
     elif match("MOONPIGCOM", description):
         category = "Presents"
+    elif match("PLUME SKIN", description):
+        category = "Grooming"
     elif match(
-        "GREATNAILS PTY LTD|TIMELYPAY|RAINBOWNAIL|PLUME SKIN|HAIRZOOM|EpicHair|PURELY CURLS",
+        "GREATNAILS PTY LTD|TIMELYPAY|RAINBOWNAIL|HAIRZOOM|EpicHair|PURELY CURLS",
         description,
     ):
         category = "Celeste"
     elif match("BNE187 S807|WestfieldChermside S805|SP 90 Bowen T", description):
         category = "Parking"
     elif match(
-        "BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU|DIRECT DEBIT PAYMENT|DIRECT DEBIT RECEIVED",
+        "BPAY PAYMENT-THANK YOU|INTERNET PAYMENT Linked Acc Trns|ANNUAL FEE|CASH/TRANSFER PAYMENT - THANK YOU|DIRECT DEBIT PAYMENT|DIRECT DEBIT RECEIVED|PAYMENT RECEIVED, THANK YOU",
         description,
     ):
         # Delete these rows
