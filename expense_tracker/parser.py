@@ -174,6 +174,7 @@ def company_detection(row):
         "Dermatologist": "MOHS CLAYFIELD",
         "Hanok Korean BBQ": "DOUBLE LIFT PTY LTD",
         "Chilink massage": "9STAR",
+        "Hong Kong Lane": "HK LOONG KEE",
     }
 
     for name, pattern in mapping.items():
