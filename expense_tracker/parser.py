@@ -56,13 +56,21 @@ def autodetect(row):
             "babylon & co",
         ],
         "Power and Gas": ["aglsalespty", "alinta energy", "ampol energy"],
-        "Fuel": ["caltex", "^bp\\b", "^puma\\b", "ampol", "chargefox"],
-        "Vehicle Maintenance": ["repco", "super cheap auto", "tesla "],
+        "Vehicle Maintenance": [
+            "caltex",
+            "^bp\\b",
+            "^puma\\b",
+            "ampol",
+            "chargefox",
+            "repco",
+            "super cheap auto",
+            "tesla ",
+        ],
         "Work Expense": [
             "carlson wagonlit",
             "bne187 s807",
             "o'gabee coffee",
-            "wilson",
+            "Wilson Parking Bneobs",
             "vodafone",
         ],
         "Pet Expenses": ["veterinary", "petbarn", "vet", "four paw"],
@@ -107,13 +115,13 @@ def autodetect(row):
         "Education": ["adobesystem"],
         "Holidays": ["amex travel redemption", "amex travel online"],
         "Untracked": [
-            "tpg", # Internet
-            "telco pay", # Moose Mobile
+            "tpg",  # Internet
+            "telco pay",  # Moose Mobile
             "optus billing autopay",
-            "insurance", # Tracked in budget
-            "transportmainrds", # Tracked in budget
-            "ring yearly plan", # Tracked in budget
-            "amznprimeau membership", # Tracked in budget
+            "insurance",  # Tracked in budget
+            "transportmainrds",  # Tracked in budget
+            "ring yearly plan",  # Tracked in budget
+            "amznprimeau membership",  # Tracked in budget
         ],
         "Presents": ["moonpigcom"],
         "Grooming": ["plume skin"],
@@ -124,7 +132,7 @@ def autodetect(row):
             "hairzoom",
             "epichair",
             "purely curls",
-            "^zlr"
+            "^zlr",
         ],
         "Parking": ["bne187 s807", "westfieldchermside s805", "sp 90 bowen t"],
         "Delete": [
