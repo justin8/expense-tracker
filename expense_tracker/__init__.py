@@ -14,7 +14,7 @@ TEMPLATE_NAME = "Template"
 
 @click.command()
 def main():
-    accounts = [Cba(), StGeorge()]
+    accounts = [Cba()]
 
     data = []
     for account in accounts:

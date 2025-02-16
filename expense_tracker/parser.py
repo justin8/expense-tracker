@@ -37,6 +37,7 @@ def autodetect(row):
             "sumbal",
             "t-bones",
             "brumbys bakery",
+            "te and te",
         ],
         "Food": ["marleyspoon"],
         "Cardholder": [
@@ -62,6 +63,7 @@ def autodetect(row):
             "^puma\\b",
             "ampol",
             "chargefox",
+            "evie networks",
             "repco",
             "super cheap auto",
             "tesla ",
@@ -92,6 +94,8 @@ def autodetect(row):
             "mohs clayfield",
             "mhs psychology",
             "chemist warehouse",
+            "MEHRZAD ENTEZAMI",
+            "THE TRUSTEE FOR NVD", # Nundah village dental
         ],
         "Fitness": ["goodlife", "n0bis training"],
         "Toll Roads": ["linkt brisbane"],
@@ -111,11 +115,13 @@ def autodetect(row):
             "spotify",
             "forwardeml",
             "backblaze",
+            "hetzner",
         ],
         "Education": ["adobesystem"],
         "Holidays": ["amex travel redemption", "amex travel online"],
         "Untracked": [
             "tpg",  # Internet
+            "superloop", # Internet
             "telco pay",  # Moose Mobile
             "optus billing autopay",
             "insurance",  # Tracked in budget
@@ -132,7 +138,6 @@ def autodetect(row):
             "hairzoom",
             "epichair",
             "purely curls",
-            "^zlr",
         ],
         "Parking": ["bne187 s807", "westfieldchermside s805", "sp 90 bowen t"],
         "Delete": [
@@ -144,6 +149,7 @@ def autodetect(row):
             "direct debit received",
             "payment received, thank you",
             "Payment - BPAY",
+            "wilson",
         ],
     }
 
@@ -183,6 +189,8 @@ def company_detection(row):
         "Hanok Korean BBQ": "DOUBLE LIFT PTY LTD",
         "Chilink massage": "9STAR",
         "Hong Kong Lane": "HK LOONG KEE",
+        "Genkimart": "TE AND TE",
+        "Nundah Village Dental": "THE TRUSTEE FOR NVD",
     }
 
     for name, pattern in mapping.items():
