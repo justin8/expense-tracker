@@ -38,6 +38,7 @@ def autodetect(row):
             "t-bones",
             "brumbys bakery",
             "te and te",
+            "GENKI MART",
         ],
         "Food": ["marleyspoon"],
         "Cardholder": [
@@ -96,6 +97,7 @@ def autodetect(row):
             "chemist warehouse",
             "MEHRZAD ENTEZAMI",
             "THE TRUSTEE FOR NVD", # Nundah village dental
+            "iherb",
         ],
         "Fitness": ["goodlife", "n0bis training"],
         "Toll Roads": ["linkt brisbane"],
@@ -128,6 +130,7 @@ def autodetect(row):
             "transportmainrds",  # Tracked in budget
             "ring yearly plan",  # Tracked in budget
             "amznprimeau membership",  # Tracked in budget
+            "NRMA", # Motorcycle insurance, tracked in budget
         ],
         "Presents": ["moonpigcom"],
         "Grooming": ["plume skin"],
