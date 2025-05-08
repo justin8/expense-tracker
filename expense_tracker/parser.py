@@ -96,7 +96,7 @@ def autodetect(row):
             "mhs psychology",
             "chemist warehouse",
             "MEHRZAD ENTEZAMI",
-            "THE TRUSTEE FOR NVD", # Nundah village dental
+            "THE TRUSTEE FOR NVD",  # Nundah village dental
             "iherb",
         ],
         "Fitness": ["goodlife", "n0bis training"],
@@ -123,16 +123,17 @@ def autodetect(row):
         "Holidays": ["amex travel redemption", "amex travel online"],
         "Untracked": [
             "tpg",  # Internet
-            "superloop", # Internet
+            "superloop",  # Internet
             "telco pay",  # Moose Mobile
+            "felix mobile",
             "optus billing autopay",
             "insurance",  # Tracked in budget
             "transportmainrds",  # Tracked in budget
             "ring yearly plan",  # Tracked in budget
             "amznprimeau membership",  # Tracked in budget
-            "NRMA", # Motorcycle insurance, tracked in budget
+            "NRMA",  # Motorcycle insurance, tracked in budget
         ],
-        "Presents": ["moonpigcom"],
+        "Presents": ["moonpig"],
         "Grooming": ["plume skin"],
         "Celeste": [
             "greatnails pty ltd",
